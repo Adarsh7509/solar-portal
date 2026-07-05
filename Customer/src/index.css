@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Light Theme Overrides */
+.light {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.light header {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: #e2e8f0 !important;
+}
+
+.light header span {
+  color: #0f172a !important;
+}
+
+.light nav a {
+  color: #475569 !important;
+}
+
+.light nav a:hover {
+  color: #ca8a04 !important;
+}
+
+/* Base text contrast overrides for Light Theme */
+.light h1, 
+.light h2, 
+.light h3, 
+.light h4, 
+.light h5, 
+.light h6 {
+  color: #0f172a !important;
+}
+
+.light p, 
+.light .text-slate-300, 
+.light .text-slate-400 {
+  color: #334155 !important;
+}
+
+/* Section overrides (targeting generic elements to avoid square brackets in CSS) */
+.light section {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Specific section overrides */
+.light section#solutions {
+  background-color: #f8fafc !important;
+}
+
+/* Cards & containers override */
+.light .bg-slate-900\/30,
+.light .bg-slate-900,
+.light .bg-slate-950,
+.light .bg-slate-950\/40,
+.light .bg-slate-950\/80,
+.light .bg-slate-900\/50 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+.light .border-slate-800, 
+.light .border-slate-900, 
+.light .border-slate-900\/60 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Inputs and Forms override */
+.light input, 
+.light textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+.light input::placeholder, 
+.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+.light .bg-slate-950\/60 {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+.light .text-slate-500 {
+  color: #64748b !important;
+}
+
+.light .text-emerald-400 {
+  color: #059669 !important;
+}
+
+.light .bg-emerald-950\/60 {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+}
+
+.light .bg-yellow-500\/10 {
+  background-color: #fef9c3 !important;
+  color: #854d0e !important;
+  border-color: #fef08a !important;
+}
+
+.light .text-yellow-400 {
+  color: #ca8a04 !important;
+}
+
+.light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+.light button:not(.bg-yellow-500):not(.bg-white) {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+.light button:not(.bg-yellow-500):not(.bg-white):hover {
+  background-color: #e2e8f0 !important;
+}
+
+/* Floating Sidebar overrides */
+.light .fixed.right-0 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: #e2e8f0 !important;
+}
+
+.light .fixed.right-0 a {
+  color: #475569 !important;
+  border-color: #f1f5f9 !important;
+}
+
+.light .fixed.right-0 a:hover {
+  background-color: #eab308 !important;
+  color: #0f172a !important;
+}
+
+/* Mega Menu overrides */
+.light .bg-slate-950\/98 {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  border-color: #e2e8f0 !important;
+}
+
+.light .bg-slate-950\/98 h4, 
+.light .bg-slate-950\/98 span {
+  color: #0f172a !important;
+}
+
+.light .bg-slate-950\/98 ul a {
+  color: #475569 !important;
+}
+
+.light .bg-slate-950\/98 ul a:hover {
+  color: #ca8a04 !important;
+}
+
+/* Sky CTA text colors must remain white */
+.light .sky-banner-text h3 {
+  color: #ffffff !important;
+}
+
+/* Keep hero section text and overlays white / contrasted under both themes */
+.light section.hero-section,
+.light section.sky-banner-section {
+  background-color: transparent !important;
+}
+
+.light .hero-section h1,
+.light .hero-section p,
+.light .hero-section span {
+  color: #ffffff !important;
+}
+
+/* Footer light overrides */
+.light footer {
+  border-color: #e2e8f0 !important;
+}
+
+.light footer .absolute.inset-0 .bg-\[\#070b13\]\/93 {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+}
+
+.light footer h5 {
+  color: #0f172a !important;
+}
+
+.light footer a {
+  color: #475569 !important;
+}
+
+.light footer a:hover {
+  color: #ca8a04 !important;
+}
+
+.light footer p {
+  color: #64748b !important;
+}
