@@ -87,7 +87,6 @@ const SOLUTIONS = [
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
-  const [isMonochrome, setIsMonochrome] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -148,7 +147,6 @@ function App() {
       className={`min-h-screen flex flex-col relative overflow-x-hidden selection:bg-yellow-500 selection:text-slate-950 transition-colors duration-300 ${
         theme === 'dark' ? 'bg-[#070b13] text-slate-100 dark' : 'bg-white text-slate-900 light'
       }`}
-      style={{ filter: isMonochrome ? 'grayscale(100%)' : 'none' }}
     >
       {/* Decorative Glows */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-yellow-500/5 rounded-full blur-[120px] pointer-events-none" />
@@ -174,19 +172,6 @@ function App() {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Black and White Grayscale toggle */}
-            <button
-              onClick={() => setIsMonochrome(!isMonochrome)}
-              className={`px-3 py-2 border rounded-xl text-xs font-black transition duration-300 cursor-pointer shadow-lg flex items-center justify-center gap-1 ${
-                isMonochrome 
-                  ? 'bg-yellow-500 border-yellow-500 text-slate-950' 
-                  : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-yellow-500/50 hover:bg-slate-900'
-              }`}
-              title="Toggle Black & White filter"
-            >
-              <span>B&W</span>
-            </button>
-
             {/* Theme Toggle Button */}
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -199,10 +184,10 @@ function App() {
             {/* Mobile Menu Open */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex items-center gap-2 px-4 py-2.5 bg-slate-950 border border-slate-800 hover:border-yellow-500/50 hover:bg-slate-900 rounded-xl text-slate-200 transition duration-300 font-bold text-sm cursor-pointer shadow-lg shadow-slate-950/20"
+              className="p-2.5 bg-slate-950 border border-slate-800 hover:border-yellow-500/50 hover:bg-slate-900 rounded-xl text-slate-200 transition duration-300 cursor-pointer shadow-lg shadow-slate-950/20 flex items-center justify-center"
+              title="Open Menu"
             >
-              <Menu className="h-4 w-4 text-yellow-500" />
-              <span>Explore Menu</span>
+              <Menu className="h-4.5 w-4.5 text-yellow-500" />
             </button>
 
             <Link
