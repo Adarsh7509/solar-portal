@@ -27,6 +27,8 @@ import {
   Youtube,
   Instagram,
   Moon,
+  MapPin,
+  Star,
 } from 'lucide-react';
 
 const SLIDES = [
@@ -232,10 +234,10 @@ function App() {
 
       {/* Floating Sidebar (Right Edge) */}
       <div className="fixed right-0 top-1/2 -translate-y-1/2 z-35 flex flex-col bg-slate-950/90 border-l border-t border-b border-slate-800 rounded-l-2xl overflow-hidden shadow-2xl backdrop-blur-md">
-        <a href="tel:+919876543210" className="p-3.5 hover:bg-yellow-500 hover:text-slate-950 text-slate-400 transition-colors group relative" title="Call Us">
+        <a href="tel:+919509380380" className="p-3.5 hover:bg-yellow-500 hover:text-slate-950 text-slate-400 transition-colors group relative" title="Call Us">
           <PhoneCall className="h-5 w-5" />
           <span className="absolute right-full mr-2.5 top-1/2 -translate-y-1/2 bg-slate-950 border border-slate-800 text-white text-xs px-2.5 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-lg">
-            Call Expert
+            Call Himanshu (+91 95093 80380)
           </span>
         </a>
         <Link to="/request-survey" className="p-3.5 hover:bg-yellow-500 hover:text-slate-950 text-slate-400 transition-colors group relative border-t border-slate-900" title="Send Inquiry">
@@ -270,117 +272,77 @@ function App() {
 
         <div className="max-w-7xl w-full mx-auto relative z-10 space-y-12">
           {/* Main Links Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-[11px] text-slate-400">
-            {/* Column 1 */}
-            <div className="space-y-6">
-              <div>
-                <h5 className="font-extrabold text-white text-[11px] uppercase tracking-wider mb-3">About Us</h5>
-                <ul className="space-y-2 text-slate-400">
-                  <li><Link to="/about#heritage" className="hover:text-yellow-500 transition-colors">- Our Heritage</Link></li>
-                  <li><Link to="/about#vision" className="hover:text-yellow-500 transition-colors">- Vision, Mission & Values</Link></li>
-                  <li><Link to="/about#milestones" className="hover:text-yellow-500 transition-colors">- Company Milestones</Link></li>
-                  <li><Link to="/about#awards" className="hover:text-yellow-500 transition-colors">- Awards</Link></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Corporate Policies</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Learn About Solar</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Case Studies</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Leadership</a></li>
-                </ul>
-              </div>
-              <div>
-                <h5 className="font-extrabold text-white text-[11px] uppercase tracking-wider mb-3">Sustainability</h5>
-                <ul className="space-y-2 text-slate-400">
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Environmental Compliance</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Health, Safety and Environment</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- CSR</a></li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Column 2 */}
-            <div className="space-y-6">
-              <div>
-                <h5 className="font-extrabold text-white text-[11px] uppercase tracking-wider mb-3">Solar Water Pumps</h5>
-                <ul className="space-y-2 text-slate-400">
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Solar Pumps</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Retail Rural Solution</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Customized Solutions</a></li>
-                </ul>
-              </div>
-              <div>
-                <h5 className="font-extrabold text-white text-[11px] uppercase tracking-wider mb-3">Rooftops</h5>
-                <ul className="space-y-2 text-slate-400">
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- TNS Rooftop</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Residential</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Commercial & Industrial</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Institutions</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Financing</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Remote Monitoring</a></li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Column 3 */}
-            <div className="space-y-6">
-              <div>
-                <h5 className="font-extrabold text-white text-[11px] uppercase tracking-wider mb-3">Projects</h5>
-                <ul className="space-y-2 text-slate-400">
-                  <li><span className="text-[11px] font-bold text-slate-300 block mt-2 mb-1">- Large Projects</span></li>
-                  <li className="pl-3"><button onClick={() => handleNavClick('#projects')} className="hover:text-yellow-500 transition-colors text-left bg-transparent border-none p-0 cursor-pointer text-[11px]">- Solutions for Businesses</button></li>
-                  <li className="pl-3"><button onClick={() => handleNavClick('#projects')} className="hover:text-yellow-500 transition-colors text-left bg-transparent border-none p-0 cursor-pointer text-[11px]">- Solutions for EPC</button></li>
-                  <li className="pl-3"><button onClick={() => handleNavClick('#projects')} className="hover:text-yellow-500 transition-colors text-left bg-transparent border-none p-0 cursor-pointer text-[11px]">- Solutions for Producers</button></li>
-                  <li className="pl-3"><button onClick={() => handleNavClick('#projects')} className="hover:text-yellow-500 transition-colors text-left bg-transparent border-none p-0 cursor-pointer text-[11px]">- Operation & Maintenance</button></li>
-                  <li><span className="text-[11px] font-bold text-slate-300 block mt-3 mb-1">- International Projects</span></li>
-                  <li className="pl-3"><a href="#" className="hover:text-yellow-500 transition-colors">Solar Modules</a></li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Column 4 */}
-            <div className="space-y-6">
-              <div>
-                <h5 className="font-extrabold text-white text-[11px] uppercase tracking-wider mb-3">Investors</h5>
-                <ul className="space-y-2 text-slate-400">
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Financials</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Merger Scheme</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Compliances</a></li>
-                </ul>
-              </div>
-              <div>
-                <h5 className="font-extrabold text-white text-[11px] uppercase tracking-wider mb-3">Media</h5>
-                <ul className="space-y-2 text-slate-400">
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Industry Events</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Press Releases</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Media Coverage</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Media Kit</a></li>
-                  <li><a href="#" className="hover:text-yellow-500 transition-colors">- Gallery</a></li>
-                </ul>
-              </div>
-              <div>
-                <a href="#" className="font-extrabold text-white text-[11px] uppercase tracking-wider hover:text-yellow-500 transition-colors block">
-                  Working at TNS
-                </a>
-              </div>
-            </div>
-
-            {/* Column 5 */}
-            <div className="space-y-6">
-              <div>
-                <h5 className="font-extrabold text-white text-[11px] uppercase tracking-wider mb-3">Contact Us</h5>
-                <ul className="space-y-2 text-slate-400">
-                  <li><Link to="/request-survey" className="hover:text-yellow-500 transition-colors">- General Enquiry</Link></li>
-                  <li><Link to="/request-survey" className="hover:text-yellow-500 transition-colors">- Customer Complaint</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h5 className="font-extrabold text-white text-[11px] uppercase tracking-wider mb-3">Follow Us</h5>
-                <div className="flex items-center gap-3 mt-2 text-slate-400">
-                  <a href="#" className="hover:text-yellow-500 transition-colors"><Twitter className="h-4 w-4" /></a>
-                  <a href="#" className="hover:text-yellow-500 transition-colors"><Linkedin className="h-4 w-4" /></a>
-                  <a href="#" className="hover:text-yellow-500 transition-colors"><Facebook className="h-4 w-4" /></a>
-                  <a href="#" className="hover:text-yellow-500 transition-colors"><Youtube className="h-4 w-4" /></a>
-                  <a href="#" className="hover:text-yellow-500 transition-colors"><Instagram className="h-4 w-4" /></a>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-[11px] text-slate-400">
+            {/* Column 1: Brand info */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 group">
+                <div className="relative flex items-center justify-center h-9 w-9 rounded-xl bg-slate-900 border border-slate-800 shadow-lg group-hover:border-yellow-500/30 transition-all duration-300">
+                  {/* Glowing background shape */}
+                  <div className="absolute inset-0.5 rounded-lg bg-gradient-to-br from-yellow-500 to-cyan-500 opacity-20 blur-xs group-hover:opacity-40 transition-all duration-300" />
+                  
+                  {/* Lightning bolt logo */}
+                  <svg className="h-5 w-5 text-yellow-500 relative z-10 drop-shadow-[0_0_8px_rgba(234,179,8,0.5)] group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-black text-white tracking-wider font-serif">
+                    TNS <span className="text-yellow-500 font-sans font-light">SYSTEMS</span>
+                  </span>
+                  <span className="text-[7px] text-slate-500 font-bold tracking-[0.25em] uppercase -mt-1 leading-none">
+                    Clean Energy
+                  </span>
                 </div>
               </div>
+              <div className="space-y-1">
+                <h4 className="font-extrabold text-white text-xs">TNS Clean Energy Ltd</h4>
+                <p className="text-[10px] text-slate-400 italic">Simplifying Solar</p>
+              </div>
+            </div>
+
+            {/* Column 2: About TNS */}
+            <div className="space-y-3">
+              <h5 className="font-extrabold text-white text-[11px] uppercase tracking-wider">About TNS</h5>
+              <ul className="space-y-2 text-slate-400">
+                <li><Link to="/about" className="hover:text-yellow-500 transition-colors">Company</Link></li>
+                <li><button onClick={() => handleNavClick('#solutions')} className="hover:text-yellow-500 transition-colors text-left bg-transparent border-none p-0 cursor-pointer text-[11px]">Solar for Home</button></li>
+                <li><button onClick={() => handleNavClick('#solutions')} className="hover:text-yellow-500 transition-colors text-left bg-transparent border-none p-0 cursor-pointer text-[11px]">Solar for Business</button></li>
+                <li><Link to="/request-survey" className="hover:text-yellow-500 transition-colors">Our Presence</Link></li>
+              </ul>
+            </div>
+
+            {/* Column 3: Quick Links */}
+            <div className="space-y-3">
+              <h5 className="font-extrabold text-white text-[11px] uppercase tracking-wider">Quick Links</h5>
+              <ul className="space-y-2 text-slate-400">
+                <li><button onClick={() => handleNavClick('#projects')} className="hover:text-yellow-500 transition-colors text-left bg-transparent border-none p-0 cursor-pointer text-[11px]">Our Portfolio</button></li>
+                <li><Link to="/request-survey" className="hover:text-yellow-500 transition-colors">Partner with Us</Link></li>
+                <li><Link to="/request-survey" className="hover:text-yellow-500 transition-colors">Service and Support</Link></li>
+                <li><Link to="/about#milestones" className="hover:text-yellow-500 transition-colors">Milestones</Link></li>
+                <li><Link to="/about#awards" className="hover:text-yellow-500 transition-colors">Awards</Link></li>
+              </ul>
+            </div>
+
+            {/* Column 4: Let's Connect */}
+            <div className="space-y-3">
+              <h5 className="font-extrabold text-white text-[11px] uppercase tracking-wider">Let's Connect</h5>
+              <ul className="space-y-2.5 text-slate-400">
+                <li className="flex items-center gap-2">
+                  <PhoneCall className="h-3.5 w-3.5 text-yellow-500 shrink-0" />
+                  <a href="tel:+919509380380" className="hover:text-yellow-500 transition-colors font-semibold">+91 95093 80380</a>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Mail className="h-3.5 w-3.5 text-yellow-500 shrink-0" />
+                  <a href="mailto:himanshutikkar@gmail.com" className="hover:text-yellow-500 transition-colors font-medium">himanshutikkar@gmail.com</a>
+                </li>
+                <li className="pt-2 flex items-center gap-3 text-slate-400">
+                  <a href="#" className="hover:text-yellow-500 transition-colors"><Facebook className="h-4 w-4" /></a>
+                  <a href="#" className="hover:text-yellow-500 transition-colors"><Instagram className="h-4 w-4" /></a>
+                  <a href="#" className="hover:text-yellow-500 transition-colors"><Linkedin className="h-4 w-4" /></a>
+                  <a href="#" className="hover:text-yellow-500 transition-colors"><Youtube className="h-4 w-4" /></a>
+                  <Link to="/request-survey" className="hover:text-yellow-500 transition-colors" title="Locate Us"><MapPin className="h-4 w-4" /></Link>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -827,42 +789,54 @@ function Home({ handleNavClick }: HomeProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <ScrollReveal direction="up" delay={0}>
-            <div className="p-6 bg-slate-900/30 border border-slate-900 rounded-2xl hover:border-slate-800 transition duration-300 space-y-4 h-full">
-              <div className="h-12 w-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-500">
+            <div className="p-6 bg-gradient-to-br from-slate-900/40 via-slate-950/30 to-slate-950/50 backdrop-blur-md border border-slate-900/60 rounded-2xl flex flex-col justify-between h-full hover:border-yellow-500/20 hover:shadow-2xl hover:shadow-yellow-500/5 hover:-translate-y-1 transition duration-300 relative group overflow-hidden space-y-4">
+              <div className="absolute -inset-px bg-gradient-to-br from-yellow-500/0 via-transparent to-cyan-500/0 group-hover:from-yellow-500/5 group-hover:to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="h-12 w-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-500 relative z-10 shrink-0">
                 <Award className="h-6 w-6" />
               </div>
-              <h3 className="text-lg font-bold text-white">Tier-1 Equipment</h3>
-              <p className="text-sm text-slate-400 leading-relaxed">
-                We exclusively use BloombergNEF Tier-1 mono-PERC half-cut solar panels with highest conversion cell efficiencies.
-              </p>
+              <div className="space-y-2 relative z-10">
+                <h3 className="text-lg font-bold text-white group-hover:text-yellow-500 transition-colors duration-300">Tier-1 Equipment</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  We exclusively use BloombergNEF Tier-1 mono-PERC half-cut solar panels with highest conversion cell efficiencies.
+                </p>
+              </div>
             </div>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={200}>
-            <div className="p-6 bg-slate-900/30 border border-slate-900 rounded-2xl hover:border-slate-800 transition duration-300 space-y-4 h-full">
-              <div className="h-12 w-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-500">
+            <div className="p-6 bg-gradient-to-br from-slate-900/40 via-slate-950/30 to-slate-950/50 backdrop-blur-md border border-slate-900/60 rounded-2xl flex flex-col justify-between h-full hover:border-yellow-500/20 hover:shadow-2xl hover:shadow-yellow-500/5 hover:-translate-y-1 transition duration-300 relative group overflow-hidden space-y-4">
+              <div className="absolute -inset-px bg-gradient-to-br from-yellow-500/0 via-transparent to-cyan-500/0 group-hover:from-yellow-500/5 group-hover:to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="h-12 w-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-500 relative z-10 shrink-0">
                 <Shield className="h-6 w-6" />
               </div>
-              <h3 className="text-lg font-bold text-white">25-Year Protection</h3>
-              <p className="text-sm text-slate-400 leading-relaxed">
-                Our installations come backed by a 10-year workmanship warranty and a 25-year linear performance warranty.
-              </p>
+              <div className="space-y-2 relative z-10">
+                <h3 className="text-lg font-bold text-white group-hover:text-yellow-500 transition-colors duration-300">25-Year Protection</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  Our installations come backed by a 10-year workmanship warranty and a 25-year linear performance warranty.
+                </p>
+              </div>
             </div>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={400}>
-            <div className="p-6 bg-slate-900/30 border border-slate-900 rounded-2xl hover:border-slate-800 transition duration-300 space-y-4 h-full">
-              <div className="h-12 w-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-500">
+            <div className="p-6 bg-gradient-to-br from-slate-900/40 via-slate-950/30 to-slate-950/50 backdrop-blur-md border border-slate-900/60 rounded-2xl flex flex-col justify-between h-full hover:border-yellow-500/20 hover:shadow-2xl hover:shadow-yellow-500/5 hover:-translate-y-1 transition duration-300 relative group overflow-hidden space-y-4">
+              <div className="absolute -inset-px bg-gradient-to-br from-yellow-500/0 via-transparent to-cyan-500/0 group-hover:from-yellow-500/5 group-hover:to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="h-12 w-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-500 relative z-10 shrink-0">
                 <Landmark className="h-6 w-6" />
               </div>
-              <h3 className="text-lg font-bold text-white">Subsidy Assistance</h3>
-              <p className="text-sm text-slate-400 leading-relaxed">
-                We handle the entire PM Surya Ghar national portal filing, ensuring your subsidy reaches your bank account directly.
-              </p>
+              <div className="space-y-2 relative z-10">
+                <h3 className="text-lg font-bold text-white group-hover:text-yellow-500 transition-colors duration-300">Subsidy Assistance</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  We handle the entire PM Surya Ghar national portal filing, ensuring your subsidy reaches your bank account directly.
+                </p>
+              </div>
             </div>
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Reviews Section */}
+      <ReviewsSection />
 
       {/* Sky CTA Banner Section */}
       <section className="relative w-full py-20 px-6 overflow-hidden border-t border-slate-900 sky-banner-section">
@@ -901,20 +875,95 @@ function Home({ handleNavClick }: HomeProps) {
 // Request Survey page component (Task 3)
 function RequestSurveyPage() {
   return (
-    <section className="py-16 px-6 max-w-7xl w-full mx-auto">
-      <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
+    <section className="py-16 px-6 max-w-7xl w-full mx-auto space-y-12">
+      <div className="text-center max-w-3xl mx-auto space-y-4 mb-8">
         <span className="text-xs font-bold text-yellow-500 uppercase tracking-widest block">
           TNS CLEAN ENERGY
         </span>
         <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight">
-          REQUEST SURVEY & ENQUIRIES
+          CONTACT US & ENQUIRIES
         </h1>
         <p className="text-slate-400 text-sm max-w-xl mx-auto">
-          Please fill out the appropriate form below. Our support desks, surveyors, and engineers are online to evaluate and log your queries.
+          Reach out to our experts or fill out the form below. We are here to support your switch to solar.
         </p>
       </div>
 
+      {/* Contact Cards Section */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Card 1: Main Office */}
+        <div className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:border-yellow-500/30 hover:-translate-y-1">
+          {/* Accent Line */}
+          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-cyan-500 to-yellow-500" />
+          <div className="flex items-center gap-3.5 mb-4 mt-2">
+            <div className="p-3 bg-yellow-500/10 rounded-2xl text-yellow-500">
+              <MapPin className="h-5 w-5" />
+            </div>
+            <h3 className="font-extrabold text-white text-base tracking-wide">Main Office</h3>
+          </div>
+          <div className="space-y-2">
+            <h4 className="text-xs font-black text-yellow-500">Vaishali Nagar, Jaipur</h4>
+            <p className="text-slate-400 text-[11px] leading-relaxed">
+              49/4, Bajari Mandi Road, Vaishali Nagar, Jaipur, Rajasthan 302034
+            </p>
+          </div>
+        </div>
+
+        {/* Card 2: Make a Call */}
+        <div className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:border-yellow-500/30 hover:-translate-y-1">
+          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-cyan-500 to-yellow-500" />
+          <div className="flex items-center gap-3.5 mb-4 mt-2">
+            <div className="p-3 bg-cyan-500/10 rounded-2xl text-cyan-400">
+              <PhoneCall className="h-5 w-5" />
+            </div>
+            <h3 className="font-extrabold text-white text-base tracking-wide">Make a Call</h3>
+          </div>
+          <div className="space-y-2">
+            <h4 className="text-xs font-black text-yellow-500">
+              <a href="tel:+919509380380" className="hover:text-yellow-500 transition-colors">+91 95093 80380</a>
+            </h4>
+            <p className="text-slate-200 text-xs font-bold">Himanshu Tikkar</p>
+            <p className="text-slate-400 text-[11px] leading-relaxed">
+              Mon - Sat: 09am - 08pm
+            </p>
+          </div>
+        </div>
+
+        {/* Card 3: Send a Mail */}
+        <div className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:border-yellow-500/30 hover:-translate-y-1">
+          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-cyan-500 to-yellow-500" />
+          <div className="flex items-center gap-3.5 mb-4 mt-2">
+            <div className="p-3 bg-emerald-500/10 rounded-2xl text-emerald-400">
+              <Mail className="h-5 w-5" />
+            </div>
+            <h3 className="font-extrabold text-white text-base tracking-wide">Send a Mail</h3>
+          </div>
+          <div className="space-y-2">
+            <h4 className="text-xs font-black text-yellow-500">
+              <a href="mailto:himanshutikkar@gmail.com" className="hover:text-yellow-500 transition-colors">himanshutikkar@gmail.com</a>
+            </h4>
+            <p className="text-slate-400 text-[11px] leading-relaxed">
+              himanshutikkar@gmail.com
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Form Switcher */}
       <RequestSurveyForm />
+
+      {/* Map Section */}
+      <div className="space-y-4">
+        <h3 className="text-sm font-bold text-white tracking-wide uppercase">Our Location Map</h3>
+        <div className="w-full h-[400px] rounded-3xl overflow-hidden border border-slate-900 shadow-2xl relative">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.7347690623253!2d75.72798991502447!3d26.911833983126743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db406a4d7d13b%3A0xe54dcf9c4b7b2507!2sVaishali%20Nagar%2C%20Jaipur%2C%20Rajasthan%20302021!5e0!3m2!1sen!2sin!4v1689123456789!5m2!1sen!2sin"
+            className="w-full h-full border-0 filter invert-[0.9] hue-rotate-[180deg] opacity-80 hover:opacity-100 transition-opacity duration-300"
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
     </section>
   );
 }
@@ -1088,6 +1137,153 @@ function AboutPage() {
           </ScrollReveal>
         </div>
       </div>
+    </section>
+  );
+}
+
+// Reviews Component
+function ReviewsSection() {
+  const [reviews, setReviews] = useState<any[]>([]);
+  const [showAll, setShowAll] = useState(false);
+
+  const loadReviews = () => {
+    const dummy = [
+      {
+        id: 1,
+        name: "Aarav Mehta",
+        city: "Jaipur",
+        rating: 5,
+        comment: "Amazing service! TNS helped us reduce our electricity bill to almost zero. The installation was very professional.",
+        date: "12 May 2026"
+      },
+      {
+        id: 2,
+        name: "Priya Sharma",
+        city: "Jaipur",
+        rating: 5,
+        comment: "Very happy with the solar water pump we installed on our farm. Extremely reliable and works without any grid power.",
+        date: "28 Apr 2026"
+      },
+      {
+        id: 3,
+        name: "Amit Verma",
+        city: "Jaipur",
+        rating: 4,
+        comment: "Excellent customer service and support team. They handled all the government subsidy paperwork for us.",
+        date: "15 Apr 2026"
+      },
+      {
+        id: 4,
+        name: "Neha Gupta",
+        city: "Jaipur",
+        rating: 5,
+        comment: "Top-notch panel quality. The structural setup is sturdy, and the power generation is very consistent.",
+        date: "02 Apr 2026"
+      },
+      {
+        id: 5,
+        name: "Rahul Singh",
+        city: "Jaipur",
+        rating: 5,
+        comment: "Installed a 5kW system for our home. The team was quick, clean, and extremely knowledgeable about net metering.",
+        date: "20 Mar 2026"
+      },
+      {
+        id: 6,
+        name: "Divya Patel",
+        city: "Jaipur",
+        rating: 4,
+        comment: "Highly recommend TNS Clean Energy. The savings are real and the system is very easy to monitor.",
+        date: "05 Mar 2026"
+      },
+      {
+        id: 7,
+        name: "Sanjay Sharma",
+        city: "Jaipur",
+        rating: 5,
+        comment: "Great experience from start to finish. Himanshu and the team resolved all queries instantly.",
+        date: "18 Feb 2026"
+      }
+    ];
+
+    const localReviews = JSON.parse(localStorage.getItem('tns_customer_reviews') || '[]');
+    setReviews([...localReviews, ...dummy]);
+  };
+
+  useEffect(() => {
+    loadReviews();
+    window.addEventListener('tns_reviews_updated', loadReviews);
+    return () => window.removeEventListener('tns_reviews_updated', loadReviews);
+  }, []);
+
+  const visibleReviews = showAll ? reviews : reviews.slice(0, 6);
+
+  return (
+    <section className="max-w-7xl w-full mx-auto px-6 py-20 border-t border-slate-900">
+      <ScrollReveal direction="up">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <span className="text-xs font-semibold text-yellow-500 uppercase tracking-wider">Testimonials</span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-1.5">
+            What Our Customers Say
+          </h2>
+          <p className="text-slate-400">
+            Real feedback from homeowners and businesses who switched to TNS Clean Energy.
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {visibleReviews.map((rev, index) => (
+          <ScrollReveal key={rev.id} direction="up" delay={index * 50}>
+            <div className="p-6 bg-gradient-to-br from-slate-900/40 via-slate-950/30 to-slate-950/50 backdrop-blur-md border border-slate-900/60 rounded-2xl flex flex-col justify-between h-full hover:border-yellow-500/20 hover:shadow-2xl hover:shadow-yellow-500/5 hover:-translate-y-1 transition duration-300 relative group overflow-hidden">
+              {/* Background gradient subtle glow */}
+              <div className="absolute -inset-px bg-gradient-to-br from-yellow-500/0 via-transparent to-cyan-500/0 group-hover:from-yellow-500/5 group-hover:to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              {/* Giant quote watermark */}
+              <span className="absolute right-4 top-2 text-7xl font-serif text-yellow-500/[0.03] group-hover:text-yellow-500/[0.06] transition-colors duration-300 pointer-events-none select-none">“</span>
+
+              <div className="space-y-4 relative z-10">
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star 
+                      key={i} 
+                      className={`h-3.5 w-3.5 ${i < rev.rating ? 'text-yellow-500 fill-yellow-500' : 'text-slate-800'}`} 
+                    />
+                  ))}
+                </div>
+                <p className="text-[11px] text-slate-300 italic leading-relaxed">
+                  "{rev.comment}"
+                </p>
+              </div>
+              
+              <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-900/80 relative z-10">
+                <div className="flex items-center gap-2.5">
+                  {/* Initials Avatar */}
+                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-yellow-500/20 to-cyan-500/20 border border-slate-800 flex items-center justify-center text-yellow-400 font-extrabold text-[10px] uppercase shrink-0 shadow-inner">
+                    {rev.name.split(' ').map((n: string) => n[0]).join('')}
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-white group-hover:text-yellow-500 transition-colors duration-300">{rev.name}</h4>
+                    <span className="text-[9px] text-slate-500 font-medium">{rev.city}</span>
+                  </div>
+                </div>
+                <span className="text-[9px] text-slate-500">{rev.date}</span>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+
+      {reviews.length > 6 && (
+        <div className="text-center mt-12">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="px-6 py-3 text-xs font-bold rounded-xl border border-slate-800 bg-slate-950 text-slate-300 hover:bg-slate-900 hover:text-white transition duration-300 cursor-pointer"
+          >
+            {showAll ? 'Show Less' : 'Show All Reviews'}
+          </button>
+        </div>
+      )}
     </section>
   );
 }

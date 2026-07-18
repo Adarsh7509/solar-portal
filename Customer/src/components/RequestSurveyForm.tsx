@@ -203,6 +203,19 @@ ${ticketForm.issueDetail}
       const response = await axios.post(`${apiUrl}/api/queries`, payload);
       if (response.data.success) {
         setSuccess(true);
+        if (activeTab === 'feedback') {
+          const newReview = {
+            id: Date.now(),
+            name: feedbackForm.name,
+            city: feedbackForm.city || 'Jaipur',
+            rating: feedbackForm.rating,
+            comment: feedbackForm.message,
+            date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+          };
+          const existingReviews = JSON.parse(localStorage.getItem('tns_customer_reviews') || '[]');
+          localStorage.setItem('tns_customer_reviews', JSON.stringify([newReview, ...existingReviews]));
+          window.dispatchEvent(new Event('tns_reviews_updated'));
+        }
       }
     } catch (err: any) {
       setErrorMsg(err.response?.data?.message || 'Failed to submit request. Please check required fields.');
