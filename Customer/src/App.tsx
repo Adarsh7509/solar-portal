@@ -196,10 +196,13 @@ function App() {
             <TNSLogo />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-            <button onClick={() => handleNavClick('#solutions')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none">Our Solutions</button>
-            <button onClick={() => handleNavClick('#projects')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none">Our Projects</button>
-            <button onClick={() => handleNavClick('#benefits')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none">Why Solar</button>
+          <nav className="hidden lg:flex items-center gap-6 text-xs xl:text-sm font-semibold text-slate-400">
+            <Link to="/about" className="hover:text-yellow-500 transition-colors">About Us</Link>
+            <button onClick={() => handleNavClick('#solutions')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none font-semibold font-sans text-xs xl:text-sm text-slate-400">Solutions</button>
+            <button onClick={() => handleNavClick('#projects')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none font-semibold font-sans text-xs xl:text-sm text-slate-400">Projects</button>
+            <button onClick={() => handleNavClick('#benefits')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none font-semibold font-sans text-xs xl:text-sm text-slate-400">Why Solar</button>
+            <button onClick={() => handleNavClick('#faq')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none font-semibold font-sans text-xs xl:text-sm text-slate-400">FAQs</button>
+            <Link to="/request-survey" className="hover:text-yellow-500 transition-colors">Contact Us</Link>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3">
@@ -215,7 +218,7 @@ function App() {
             {/* Mobile Menu Open */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2.5 bg-slate-950 border border-slate-800 hover:border-yellow-500/50 hover:bg-slate-900 rounded-xl text-slate-200 transition duration-300 cursor-pointer shadow-lg shadow-slate-950/20 flex items-center justify-center"
+              className="lg:hidden p-2.5 bg-slate-950 border border-slate-800 hover:border-yellow-500/50 hover:bg-slate-900 rounded-xl text-slate-200 transition duration-300 cursor-pointer shadow-lg shadow-slate-950/20 flex items-center justify-center"
               title="Open Menu"
             >
               <Menu className="h-4.5 w-4.5 text-yellow-500" />
@@ -277,7 +280,7 @@ function App() {
               <div className="flex items-center gap-2 group">
                 <div className="relative flex items-center justify-center h-9 w-9 rounded-xl bg-slate-900 border border-slate-800 shadow-lg group-hover:border-yellow-500/30 transition-all duration-300">
                   {/* Glowing background shape */}
-                  <div className="absolute inset-0.5 rounded-lg bg-gradient-to-br from-yellow-500 to-cyan-500 opacity-20 blur-xs group-hover:opacity-40 transition-all duration-300" />
+                  <div className="absolute inset-0.5 rounded-lg bg-gradient-to-br from-yellow-500 to-yellow-600 opacity-20 blur-xs group-hover:opacity-40 transition-all duration-300" />
                   
                   {/* Lightning bolt logo */}
                   <svg className="h-5 w-5 text-yellow-500 relative z-10 drop-shadow-[0_0_8px_rgba(234,179,8,0.5)] group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -770,6 +773,9 @@ function Home({ handleNavClick }: HomeProps) {
       {/* Our Projects Section (Task 1) */}
       <OurProjects />
 
+      {/* 4-Step Solar Journey */}
+      <SolarJourney />
+
 
 
       {/* Benefits Section */}
@@ -789,7 +795,7 @@ function Home({ handleNavClick }: HomeProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <ScrollReveal direction="up" delay={0}>
             <div className="p-6 bg-gradient-to-br from-slate-900/40 via-slate-950/30 to-slate-950/50 backdrop-blur-md border border-slate-900/60 rounded-2xl flex flex-col justify-between h-full hover:border-yellow-500/20 hover:shadow-2xl hover:shadow-yellow-500/5 hover:-translate-y-1 transition duration-300 relative group overflow-hidden space-y-4">
-              <div className="absolute -inset-px bg-gradient-to-br from-yellow-500/0 via-transparent to-cyan-500/0 group-hover:from-yellow-500/5 group-hover:to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute -inset-px bg-gradient-to-br from-yellow-500/0 via-transparent to-yellow-500/0 group-hover:from-yellow-500/[0.04] group-hover:to-yellow-500/[0.04] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               <div className="h-12 w-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-500 relative z-10 shrink-0">
                 <Award className="h-6 w-6" />
               </div>
@@ -804,7 +810,7 @@ function Home({ handleNavClick }: HomeProps) {
 
           <ScrollReveal direction="up" delay={200}>
             <div className="p-6 bg-gradient-to-br from-slate-900/40 via-slate-950/30 to-slate-950/50 backdrop-blur-md border border-slate-900/60 rounded-2xl flex flex-col justify-between h-full hover:border-yellow-500/20 hover:shadow-2xl hover:shadow-yellow-500/5 hover:-translate-y-1 transition duration-300 relative group overflow-hidden space-y-4">
-              <div className="absolute -inset-px bg-gradient-to-br from-yellow-500/0 via-transparent to-cyan-500/0 group-hover:from-yellow-500/5 group-hover:to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute -inset-px bg-gradient-to-br from-yellow-500/0 via-transparent to-yellow-500/0 group-hover:from-yellow-500/[0.04] group-hover:to-yellow-500/[0.04] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               <div className="h-12 w-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-500 relative z-10 shrink-0">
                 <Shield className="h-6 w-6" />
               </div>
@@ -819,7 +825,7 @@ function Home({ handleNavClick }: HomeProps) {
 
           <ScrollReveal direction="up" delay={400}>
             <div className="p-6 bg-gradient-to-br from-slate-900/40 via-slate-950/30 to-slate-950/50 backdrop-blur-md border border-slate-900/60 rounded-2xl flex flex-col justify-between h-full hover:border-yellow-500/20 hover:shadow-2xl hover:shadow-yellow-500/5 hover:-translate-y-1 transition duration-300 relative group overflow-hidden space-y-4">
-              <div className="absolute -inset-px bg-gradient-to-br from-yellow-500/0 via-transparent to-cyan-500/0 group-hover:from-yellow-500/5 group-hover:to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute -inset-px bg-gradient-to-br from-yellow-500/0 via-transparent to-yellow-500/0 group-hover:from-yellow-500/[0.04] group-hover:to-yellow-500/[0.04] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               <div className="h-12 w-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-500 relative z-10 shrink-0">
                 <Landmark className="h-6 w-6" />
               </div>
@@ -836,6 +842,9 @@ function Home({ handleNavClick }: HomeProps) {
 
       {/* Reviews Section */}
       <ReviewsSection />
+
+      {/* FAQ Accordion Section */}
+      <FAQSection />
 
       {/* Sky CTA Banner Section */}
       <section className="relative w-full py-20 px-6 overflow-hidden border-t border-slate-900 sky-banner-section">
@@ -1236,11 +1245,11 @@ function ReviewsSection() {
           <ScrollReveal key={rev.id} direction="up" delay={index * 50}>
             <div className="p-6 bg-gradient-to-br from-slate-900/40 via-slate-950/30 to-slate-950/50 backdrop-blur-md border border-slate-900/60 rounded-2xl flex flex-col justify-between h-full hover:border-yellow-500/20 hover:shadow-2xl hover:shadow-yellow-500/5 hover:-translate-y-1 transition duration-300 relative group overflow-hidden">
               {/* Background gradient subtle glow */}
-              <div className="absolute -inset-px bg-gradient-to-br from-yellow-500/0 via-transparent to-cyan-500/0 group-hover:from-yellow-500/5 group-hover:to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute -inset-px bg-gradient-to-br from-yellow-500/0 via-transparent to-yellow-500/0 group-hover:from-yellow-500/[0.04] group-hover:to-yellow-500/[0.04] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               
               {/* Giant quote watermark */}
               <span className="absolute right-4 top-2 text-7xl font-serif text-yellow-500/[0.03] group-hover:text-yellow-500/[0.06] transition-colors duration-300 pointer-events-none select-none">“</span>
-
+ 
               <div className="space-y-4 relative z-10">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
@@ -1258,7 +1267,7 @@ function ReviewsSection() {
               <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-900/80 relative z-10">
                 <div className="flex items-center gap-2.5">
                   {/* Initials Avatar */}
-                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-yellow-500/20 to-cyan-500/20 border border-slate-800 flex items-center justify-center text-yellow-400 font-extrabold text-[10px] uppercase shrink-0 shadow-inner">
+                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-yellow-500/10 to-yellow-500/5 border border-yellow-500/20 flex items-center justify-center text-yellow-400 font-extrabold text-[10px] uppercase shrink-0 shadow-inner">
                     {rev.name.split(' ').map((n: string) => n[0]).join('')}
                   </div>
                   <div>
@@ -1283,6 +1292,136 @@ function ReviewsSection() {
           </button>
         </div>
       )}
+    </section>
+  );
+}
+
+// 4-Step Solar Journey
+function SolarJourney() {
+  const steps = [
+    {
+      no: "01",
+      title: "Free Roof Audit",
+      desc: "Our expert surveyors visit your site in Jaipur to conduct shade analysis, measure area, and check structural viability."
+    },
+    {
+      no: "02",
+      title: "Custom Engineering",
+      desc: "Our design engineers create a customized 3D solar layout optimizing cell angles for maximum solar irradiance capture."
+    },
+    {
+      no: "03",
+      title: "Seamless Setup",
+      desc: "We handle panel mounting, electrical safety cabling, inverter integration, and complete net-metering approvals."
+    },
+    {
+      no: "04",
+      title: "Subsidy Approval",
+      desc: "We file the required paperwork on the national solar portal so the PM Surya Ghar subsidy is directly released to your account."
+    }
+  ];
+
+  return (
+    <section className="max-w-7xl w-full mx-auto px-6 py-20 border-t border-slate-900">
+      <ScrollReveal direction="up">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <span className="text-xs font-semibold text-yellow-500 uppercase tracking-wider">Process Flow</span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-1.5">
+            Your 4-Step Journey to Solar Power
+          </h2>
+          <p className="text-slate-400">
+            How we guide you from initial rooftop consultation to system turn-on and government subsidy release.
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+        {steps.map((step, idx) => (
+          <ScrollReveal key={idx} direction="up" delay={idx * 100}>
+            <div className="relative p-6 bg-gradient-to-br from-slate-900/20 via-slate-950/10 to-slate-950/30 border border-slate-900/60 rounded-2xl hover:border-slate-800 transition duration-300 h-full flex flex-col justify-between group overflow-hidden">
+              {/* Step Line connector (only on medium screens and up, for first 3 items) */}
+              {idx < 3 && (
+                <div className="hidden md:block absolute top-10 left-[60%] w-[80%] h-[1px] bg-gradient-to-r from-yellow-500/30 to-transparent z-0 pointer-events-none" />
+              )}
+              
+              <div className="space-y-4 relative z-10">
+                <span className="text-3xl font-black text-yellow-500/20 group-hover:text-yellow-500/40 transition-colors duration-300 block font-mono">{step.no}</span>
+                <h3 className="text-base font-bold text-white group-hover:text-yellow-500 transition-colors duration-300">{step.title}</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">{step.desc}</p>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// FAQ Accordion Section
+function FAQSection() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      q: "How much government subsidy is available for home solar?",
+      a: "Under the PM Surya Ghar National Portal, residential rooftop solar systems receive ₹30,000 for 1 kW, ₹60,000 for 2 kW, and a maximum of ₹78,000 for 3 kW or higher capacities. TNS Clean Energy handles the entire registration and documentation to ensure the subsidy is credited directly to your bank account."
+    },
+    {
+      q: "What is Net-Metering and how does it benefit me?",
+      a: "Net-metering is a utility billing mechanism that monitors the solar energy you feed back into the government power grid (such as JVVNL in Rajasthan). When your system produces excess electricity (e.g., during peak afternoon sun), your meter runs backward, earning you energy credits that reduce your monthly power bill."
+    },
+    {
+      q: "How much roof space is required for solar installation?",
+      a: "On average, a 1 kW solar array requires approximately 100 square feet of shadow-free rooftop area. For a standard 3 kW residential setup, you will need around 300 square feet of clear, unshaded space."
+    },
+    {
+      q: "What kind of maintenance does a solar system require?",
+      a: "Solar PV systems are highly durable and have no moving parts, so maintenance is minimal. Regularly washing the panels with clean water to clear dust and bird droppings ensures they operate at peak efficiency. TNS also provides periodic system health audits."
+    },
+    {
+      q: "Will my solar panels generate electricity on cloudy or rainy days?",
+      a: "Yes, solar panels still generate power during cloudy or overcast conditions by capturing diffused daylight. However, the output will be lower (typically 10% to 25% of peak capacity) compared to bright sunny days."
+    }
+  ];
+
+  return (
+    <section id="faq" className="max-w-4xl w-full mx-auto px-6 py-20 border-t border-slate-900">
+      <ScrollReveal direction="up">
+        <div className="text-center space-y-4 mb-12">
+          <span className="text-xs font-semibold text-yellow-500 uppercase tracking-wider">Got Questions?</span>
+          <h2 className="text-3xl font-extrabold text-white mt-1.5">Frequently Asked Questions</h2>
+          <p className="text-slate-400 text-sm max-w-lg mx-auto">
+            Find answers to common questions about PM Surya Ghar subsidies, installation, net-metering, and maintenance.
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <div className="space-y-4">
+        {faqs.map((faq, idx) => (
+          <ScrollReveal key={idx} direction="up" delay={idx * 50}>
+            <div className="border border-slate-900 bg-slate-950/40 rounded-2xl overflow-hidden transition-all duration-300 hover:border-slate-800">
+              <button
+                onClick={() => setActiveIndex(activeIndex === idx ? null : idx)}
+                className="w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold text-sm md:text-base hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-0"
+              >
+                <span>{faq.q}</span>
+                <span className={`text-yellow-500 font-sans text-xl transform transition-transform duration-300 ${activeIndex === idx ? 'rotate-45' : ''}`}>
+                  +
+                </span>
+              </button>
+              <div 
+                className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                  activeIndex === idx ? 'max-h-60 border-t border-slate-900/60' : 'max-h-0'
+                }`}
+              >
+                <p className="px-6 py-4.5 text-xs md:text-sm text-slate-400 leading-relaxed bg-slate-900/10">
+                  {faq.a}
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
     </section>
   );
 }
