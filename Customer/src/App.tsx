@@ -21,7 +21,6 @@ import {
   Mail,
   ArrowRight,
   Sparkles,
-  Twitter,
   Linkedin,
   Facebook,
   Youtube,
