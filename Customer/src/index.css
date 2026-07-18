@@ -234,3 +234,53 @@ body {
 .light footer p {
   color: #64748b !important;
 }
+
+/* Continuous Glittering Border Animation */
+@keyframes border-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.glitter-border-btn {
+  position: relative;
+  border: 1.5px solid transparent !important;
+  background-image: linear-gradient(rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.9)), 
+                    linear-gradient(90deg, #eab308, #22d3ee, #ef4444, #eab308);
+  background-size: 200% auto;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  animation: border-shimmer 3s linear infinite;
+  box-shadow: 0 0 15px rgba(234, 179, 8, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.glitter-border-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.35);
+}
+
+.glitter-border-btn-yellow {
+  position: relative;
+  border: 1.5px solid transparent !important;
+  background-image: linear-gradient(#eab308, #eab308), 
+                    linear-gradient(90deg, #ffffff, #22d3ee, #ef4444, #ffffff);
+  background-size: 200% auto;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  animation: border-shimmer 2.5s linear infinite;
+  color: #020617 !important;
+  box-shadow: 0 0 15px rgba(234, 179, 8, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.glitter-border-btn-yellow:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 25px rgba(234, 179, 8, 0.5);
+}

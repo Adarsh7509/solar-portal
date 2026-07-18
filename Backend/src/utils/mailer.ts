@@ -95,6 +95,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
     await transporter.sendMail({
       from: mailFrom,
       to: mailTo,
+      replyTo: payload.email,
       subject: `🔥 Alert: New Solar Lead - ${payload.name} (${payload.city})`,
       html: htmlContent,
     });

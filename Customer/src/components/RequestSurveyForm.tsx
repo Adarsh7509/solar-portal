@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { CheckCircle2, Loader2, Star, Upload } from 'lucide-react';
 
-type FormTab = 'enquiry' | 'service' | 'feedback' | 'warranty';
+type FormTab = 'enquiry' | 'service' | 'feedback';
 
 const STATES = [
   'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
@@ -42,21 +42,6 @@ export function RequestSurveyForm() {
     message: '',
   });
 
-  // --- Warranty Form Fields ---
-  const [warrantyForm, setWarrantyForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-    state: 'Uttar Pradesh',
-    city: '',
-    productModel: '',
-    serialNumber: '',
-    purchaseDate: '',
-    invoiceNo: '',
-    installer: '',
-    message: '',
-  });
 
   // --- Detailed Service Enquiry (Submit Ticket) Form Fields ---
   const [ticketForm, setTicketForm] = useState({
@@ -103,9 +88,6 @@ export function RequestSurveyForm() {
     setFeedbackForm({ ...feedbackForm, [e.target.name]: e.target.value });
   };
 
-  const handleWarrantyChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setWarrantyForm({ ...warrantyForm, [e.target.name]: e.target.value });
-  };
 
   const handleTicketChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setTicketForm({ ...ticketForm, [e.target.name]: e.target.value });
@@ -180,28 +162,6 @@ ${feedbackForm.message}
           message: messageText.trim(),
         };
       } 
-      else if (activeTab === 'warranty') {
-        const messageText = `
-[WARRANTY REGISTRATION]
-Product Model: ${warrantyForm.productModel}
-Serial Number: ${warrantyForm.serialNumber}
-Purchase Date: ${warrantyForm.purchaseDate}
-Invoice Number: ${warrantyForm.invoiceNo}
-Authorized Installer: ${warrantyForm.installer}
-Additional Info:
-${warrantyForm.message || 'None'}
-`;
-        payload = {
-          name: warrantyForm.name,
-          email: warrantyForm.email,
-          phone: warrantyForm.phone,
-          address: warrantyForm.address || 'N/A',
-          city: warrantyForm.city || 'N/A',
-          monthlyElectricityBill: 1,
-          solarCapacityInterested: 'Warranty Query',
-          message: messageText.trim(),
-        };
-      } 
       else if (activeTab === 'service') {
         // Detailed Submit Ticket Form
         const formattedAddress = `${ticketForm.doorNo}, ${ticketForm.street}, ${ticketForm.landmark ? `Near ${ticketForm.landmark}, ` : ''}${ticketForm.locality}, Post: ${ticketForm.postOffice}, Tahsil: ${ticketForm.tahsil}, ${ticketForm.city}, ${ticketForm.district}, ${ticketForm.state} - ${ticketForm.pincode}`;
@@ -272,20 +232,7 @@ ${ticketForm.issueDetail}
       feedbackType: 'Service Quality',
       message: '',
     });
-    setWarrantyForm({
-      name: '',
-      email: '',
-      phone: '',
-      address: '',
-      state: 'Uttar Pradesh',
-      city: '',
-      productModel: '',
-      serialNumber: '',
-      purchaseDate: '',
-      invoiceNo: '',
-      installer: '',
-      message: '',
-    });
+
     setTicketForm({
       customerType: 'Residential',
       name: '',
@@ -382,18 +329,6 @@ ${ticketForm.issueDetail}
             Feedback
           </button>
 
-          {/* Tab 4: Warranty Registration */}
-          <button
-            type="button"
-            onClick={() => { setActiveTab('warranty'); setErrorMsg(''); }}
-            className={`flex-1 py-4 text-center cursor-pointer transition-all duration-300 relative ${
-              activeTab === 'warranty'
-                ? 'text-yellow-500 after:content-[""] after:absolute after:bottom-[-1px] after:left-0 after:right-0 after:h-[2px] after:bg-yellow-500 after:z-10 before:content-[""] before:absolute before:bottom-[-7px] before:left-1/2 before:-translate-x-1/2 before:border-[4px] before:border-transparent before:border-t-yellow-500 before:z-20'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            Warranty Registration
-          </button>
 
         </div>
       </div>
@@ -465,7 +400,7 @@ ${ticketForm.issueDetail}
             <textarea name="message" required rows={4} value={enquiryForm.message} onChange={handleEnquiryChange} className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200 resize-none" />
           </div>
 
-          <button type="submit" disabled={loading} className="w-full py-4 bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-extrabold text-sm rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 shadow-lg shadow-yellow-500/10">
+          <button type="submit" disabled={loading} className="w-full py-4 font-extrabold text-sm rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 shadow-lg shadow-yellow-500/10 glitter-border-btn-yellow">
             {loading ? <Loader2 className="h-4.5 w-4.5 animate-spin" /> : 'Submit Enquiry'}
           </button>
         </form>
@@ -700,7 +635,7 @@ ${ticketForm.issueDetail}
           </div>
 
           {/* Submit Button */}
-          <button type="submit" disabled={loading} className="w-full py-4 bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-extrabold text-sm rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 shadow-lg shadow-yellow-500/10">
+          <button type="submit" disabled={loading} className="w-full py-4 font-extrabold text-sm rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 shadow-lg shadow-yellow-500/10 glitter-border-btn-yellow">
             {loading ? <Loader2 className="h-4.5 w-4.5 animate-spin" /> : 'Submit Ticket'}
           </button>
         </form>
@@ -766,95 +701,13 @@ ${ticketForm.issueDetail}
             <textarea name="message" required rows={4} value={feedbackForm.message} onChange={handleFeedbackChange} className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200 resize-none" />
           </div>
 
-          <button type="submit" disabled={loading} className="w-full py-4 bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-extrabold text-sm rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 shadow-lg shadow-yellow-500/10">
+          <button type="submit" disabled={loading} className="w-full py-4 font-extrabold text-sm rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 shadow-lg shadow-yellow-500/10 glitter-border-btn-yellow">
             {loading ? <Loader2 className="h-4.5 w-4.5 animate-spin" /> : 'Submit Feedback'}
           </button>
         </form>
       )}
 
-      {/* --- FORM 4: WARRANTY REGISTRATION --- */}
-      {activeTab === 'warranty' && (
-        <form onSubmit={handleSubmit} className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 md:p-8 space-y-6">
-          <h2 className="text-xl font-bold text-white flex items-center gap-2 border-b border-slate-900 pb-3">
-            <span>Product Warranty Registration</span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Full Name</label>
-              <input type="text" name="name" required value={warrantyForm.name} onChange={handleWarrantyChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
-            </div>
-            <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Email Address</label>
-              <input type="email" name="email" required value={warrantyForm.email} onChange={handleWarrantyChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
-            </div>
-            <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Mobile Number</label>
-              <div className="relative flex items-center">
-                <span className="absolute left-3.5 text-xs font-bold text-slate-500 border-r border-slate-800 pr-2.5 select-none">+91</span>
-                <input
-                  type="text"
-                  name="phone"
-                  required
-                  maxLength={10}
-                  placeholder=""
-                  value={warrantyForm.phone}
-                  onChange={(e) => handlePhoneInputChange(e, setWarrantyForm, warrantyForm)}
-                  className="w-full pl-14 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200"
-                />
-              </div>
-            </div>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Installation Address</label>
-              <input type="text" name="address" required value={warrantyForm.address} onChange={handleWarrantyChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">City</label>
-                <input type="text" name="city" required value={warrantyForm.city} onChange={handleWarrantyChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
-              </div>
-              <div>
-                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">State</label>
-                <select name="state" value={warrantyForm.state} onChange={handleWarrantyChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs cursor-pointer">
-                  {STATES.map((st) => <option key={st} value={st}>{st}</option>)}
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Product Model</label>
-              <input type="text" name="productModel" required value={warrantyForm.productModel} onChange={handleWarrantyChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
-            </div>
-            <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Product Serial Number</label>
-              <input type="text" name="serialNumber" required value={warrantyForm.serialNumber} onChange={handleWarrantyChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
-            </div>
-            <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Date of Purchase</label>
-              <input type="date" name="purchaseDate" required value={warrantyForm.purchaseDate} onChange={handleWarrantyChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Invoice / Bill Number</label>
-              <input type="text" name="invoiceNo" required value={warrantyForm.invoiceNo} onChange={handleWarrantyChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
-            </div>
-            <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Installer / Agency Name</label>
-              <input type="text" name="installer" required value={warrantyForm.installer} onChange={handleWarrantyChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
-            </div>
-          </div>
-
-          <button type="submit" disabled={loading} className="w-full py-4 bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-extrabold text-sm rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 shadow-lg shadow-yellow-500/10">
-            {loading ? <Loader2 className="h-4.5 w-4.5 animate-spin" /> : 'Register Warranty'}
-          </button>
-        </form>
-      )}
 
     </div>
   );
