@@ -96,14 +96,26 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
       return true;
     }
 
-    // 1. Send Lead notification email to Admin/Client
-    await transporter.sendMail({
-      from: mailFrom,
-      to: mailTo,
-      ...(payload.email && { replyTo: payload.email }),
-      subject: `🔥 Alert: New Solar Lead - ${payload.name} (${payload.city})`,
-      html: htmlContent,
+    // 1. Send Lead notification email to Admin/Client via Resend HTTP API (Port 443)
+    const adminResponse = await globalThis.fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.SMTP_PASS}`,
+      },
+      body: JSON.stringify({
+        from: mailFrom,
+        to: mailTo,
+        ...(payload.email && { replyTo: payload.email }),
+        subject: `🔥 Alert: New Solar Lead - ${payload.name} (${payload.city})`,
+        html: htmlContent,
+      }),
     });
+
+    if (!adminResponse.ok) {
+      const errorText = await adminResponse.text();
+      throw new Error(`Resend API (Admin Notification) failed: ${errorText}`);
+    }
     logger.info(`Lead notification email successfully sent to client: ${mailTo}`);
 
     // 2. Send automated confirmation email to Customer (if email is provided)
@@ -144,18 +156,31 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
         </html>
       `;
 
-      await transporter.sendMail({
-        from: mailFrom,
-        to: payload.email,
-        subject: `We've received your Solar request! - TNS Solars ⚡`,
-        html: customerHtmlContent,
+      const customerResponse = await globalThis.fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.SMTP_PASS}`,
+        },
+        body: JSON.stringify({
+          from: mailFrom,
+          to: payload.email,
+          subject: `We've received your Solar request! - TNS Solars ⚡`,
+          html: customerHtmlContent,
+        }),
       });
-      logger.info(`Confirmation email successfully sent to customer: ${payload.email}`);
+
+      if (!customerResponse.ok) {
+        const errorText = await customerResponse.text();
+        logger.error(`Resend API (Customer Confirmation) failed: ${errorText}`);
+      } else {
+        logger.info(`Confirmation email successfully sent to customer: ${payload.email}`);
+      }
     }
 
     return true;
   } catch (err: any) {
-    logger.error('Nodemailer error sending lead query email', { error: err.message });
+    logger.error('Error sending lead query email via Resend API', { error: err.message });
     return false;
   }
 }
