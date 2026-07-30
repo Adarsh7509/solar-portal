@@ -82,7 +82,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
   `;
 
   try {
-    const hasSmtpConfig = process.env.SMTP_USER && process.env.SMTP_USER !== 'resend' && process.env.SMTP_PASS && !process.env.SMTP_PASS.startsWith('re_');
+    const hasSmtpConfig = process.env.SMTP_USER && process.env.SMTP_PASS && process.env.SMTP_PASS !== 're_your_api_secret_key';
     if (!hasSmtpConfig) {
       logger.info('SMTP credentials are not configured or placeholder. Logging email instead:');
       logger.info(`TO (Admin): ${mailTo}`);
