@@ -3,7 +3,7 @@ import logger from './logger';
 
 interface QueryMailPayload {
   name: string;
-  email: string;
+  email?: string | null;
   phone: string;
   address: string;
   city: string;
@@ -46,7 +46,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
             </tr>
             <tr>
               <td class="label">Email Address</td>
-              <td class="value"><a href="mailto:${payload.email}">${payload.email}</a></td>
+              <td class="value">${payload.email ? `<a href="mailto:${payload.email}">${payload.email}</a>` : '<span style="color:#a0aec0;font-style:italic;">Not Provided</span>'}</td>
             </tr>
             <tr>
               <td class="label">Phone Number</td>
@@ -85,21 +85,74 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
     const hasSmtpConfig = process.env.SMTP_USER && process.env.SMTP_USER !== 'resend' && process.env.SMTP_PASS && !process.env.SMTP_PASS.startsWith('re_');
     if (!hasSmtpConfig) {
       logger.info('SMTP credentials are not configured or placeholder. Logging email instead:');
-      logger.info(`TO: ${mailTo}`);
+      logger.info(`TO (Admin): ${mailTo}`);
       logger.info(`FROM: ${mailFrom}`);
       logger.info(`SUBJECT: 🔥 Alert: New Solar Lead - ${payload.name} (${payload.city})`);
       logger.info(`BODY:\n${htmlContent}`);
+      if (payload.email) {
+        logger.info(`TO (Customer): ${payload.email}`);
+        logger.info('SUBJECT (Customer): We\'ve received your Solar request! - TNS Solars ⚡');
+      }
       return true;
     }
 
+    // 1. Send Lead notification email to Admin/Client
     await transporter.sendMail({
       from: mailFrom,
       to: mailTo,
-      replyTo: payload.email,
+      ...(payload.email && { replyTo: payload.email }),
       subject: `🔥 Alert: New Solar Lead - ${payload.name} (${payload.city})`,
       html: htmlContent,
     });
     logger.info(`Lead notification email successfully sent to client: ${mailTo}`);
+
+    // 2. Send automated confirmation email to Customer (if email is provided)
+    if (payload.email) {
+      const customerHtmlContent = `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <style>
+              body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f7fafc; color: #2d3748; margin: 0; padding: 20px; }
+              .container { max-width: 600px; background: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 30px; margin: 0 auto; border-top: 6px solid #eab308; }
+              .logo { text-align: center; font-size: 24px; font-weight: bold; color: #1e3a8a; margin-bottom: 20px; }
+              .headline { font-size: 20px; font-weight: bold; color: #1a202c; border-bottom: 2px solid #edf2f7; padding-bottom: 12px; margin-bottom: 20px; }
+              .content { font-size: 14px; line-height: 1.6; color: #2d3748; }
+              .footer { font-size: 12px; text-align: center; color: #a0aec0; margin-top: 30px; border-top: 1px solid #edf2f7; padding-top: 15px; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="logo">⚡ TNS Solars</div>
+              <div class="headline">Request Received Successfully</div>
+              <div class="content">
+                <p>Dear <strong>${payload.name}</strong>,</p>
+                <p>Thank you for reaching out to TNS Solars! We have successfully received your query.</p>
+                <p>Our solar engineering experts will perform a preliminary satellite solar feasibility check for your site and contact you at <strong>+91 ${payload.phone}</strong> shortly to discuss your options.</p>
+                <p>If you have any urgent questions, please feel free to reply directly to this email or call us.</p>
+                <br>
+                <p>Warm regards,</p>
+                <p><strong>TNS Solars Support Team</strong></p>
+              </div>
+              <div class="footer">
+                TNS Solars - Clean Energy for a Brighter Future.<br>
+                This is an automated receipt confirmation for your request.
+              </div>
+            </div>
+          </body>
+        </html>
+      `;
+
+      await transporter.sendMail({
+        from: mailFrom,
+        to: payload.email,
+        subject: `We've received your Solar request! - TNS Solars ⚡`,
+        html: customerHtmlContent,
+      });
+      logger.info(`Confirmation email successfully sent to customer: ${payload.email}`);
+    }
+
     return true;
   } catch (err: any) {
     logger.error('Nodemailer error sending lead query email', { error: err.message });

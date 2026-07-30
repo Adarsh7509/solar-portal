@@ -133,7 +133,7 @@ export function CustomerLeadForm() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
-              Email Address
+              Email Address (Optional)
             </label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
@@ -142,7 +142,6 @@ export function CustomerLeadForm() {
               <input
                 type="email"
                 name="email"
-                required
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder=""

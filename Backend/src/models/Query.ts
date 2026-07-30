@@ -10,7 +10,7 @@ export enum QueryStatus {
 export class QueryModel extends Model {
   public id!: string;
   public name!: string;
-  public email!: string;
+  public email!: string | null;
   public phone!: string;
   public address!: string;
   public city!: string;
@@ -38,8 +38,16 @@ export function initQueryModel(sequelize: Sequelize) {
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: { isEmail: true },
+        allowNull: true,
+        validate: {
+          isEmailOrEmpty(value: any) {
+            if (value && value.trim() !== '') {
+              if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                throw new Error('Invalid email address format');
+              }
+            }
+          }
+        },
       },
       phone: {
         type: DataTypes.STRING,

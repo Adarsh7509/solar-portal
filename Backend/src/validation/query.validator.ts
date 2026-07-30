@@ -6,10 +6,8 @@ export const submitLeadSchema = Joi.object({
     'string.min': 'Name must be at least 3 characters long',
     'any.required': 'Name is required',
   }),
-  email: Joi.string().trim().email().required().messages({
+  email: Joi.string().trim().email().allow('', null).optional().messages({
     'string.email': 'Please enter a valid email address',
-    'string.empty': 'Email cannot be empty',
-    'any.required': 'Email is required',
   }),
   phone: Joi.string().trim().pattern(/^[0-9]{10}$/).required().messages({
     'string.pattern.base': 'Phone number must be a 10-digit number',

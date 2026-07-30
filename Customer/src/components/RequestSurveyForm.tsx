@@ -364,8 +364,8 @@ ${ticketForm.issueDetail}
               <input type="text" name="name" required value={enquiryForm.name} onChange={handleEnquiryChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
             </div>
             <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Email Address</label>
-              <input type="email" name="email" required value={enquiryForm.email} onChange={handleEnquiryChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
+              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Email Address (Optional)</label>
+              <input type="email" name="email" value={enquiryForm.email} onChange={handleEnquiryChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
             </div>
             <div>
               <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Mobile Number</label>
@@ -447,8 +447,8 @@ ${ticketForm.issueDetail}
                 <input type="text" name="name" required value={ticketForm.name} onChange={handleTicketChange} className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs outline-none focus:border-yellow-500" />
               </div>
               <div>
-                <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Customer Email Id</label>
-                <input type="email" name="email" required value={ticketForm.email} onChange={handleTicketChange} className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs outline-none focus:border-yellow-500" />
+                <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Customer Email Id (Optional)</label>
+                <input type="email" name="email" value={ticketForm.email} onChange={handleTicketChange} className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs outline-none focus:border-yellow-500" />
               </div>
               <div>
                 <label className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Customer Mobile No</label>
@@ -666,8 +666,8 @@ ${ticketForm.issueDetail}
               <input type="text" name="name" required value={feedbackForm.name} onChange={handleFeedbackChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
             </div>
             <div>
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Email Address</label>
-              <input type="email" name="email" required value={feedbackForm.email} onChange={handleFeedbackChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
+              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Email Address (Optional)</label>
+              <input type="email" name="email" value={feedbackForm.email} onChange={handleFeedbackChange} className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none text-white text-xs transition duration-200" />
             </div>
             <div>
               <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Mobile Number</label>
