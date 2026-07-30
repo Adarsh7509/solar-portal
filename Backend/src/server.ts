@@ -19,20 +19,24 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet());
 
 // CORS configuration - support both development and production origins
+const cleanOrigin = (url?: string) => url ? url.replace(/\/$/, '') : '';
+
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
   'http://localhost:3000',
-  process.env.CUSTOMER_PORTAL_URL,
-  process.env.ADMIN_PANEL_URL,
+  cleanOrigin(process.env.CUSTOMER_PORTAL_URL),
+  cleanOrigin(process.env.ADMIN_PANEL_URL),
 ].filter(Boolean) as string[];
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin) || process.env.NODE_ENV === 'development') {
+      const normalizedOrigin = origin ? origin.replace(/\/$/, '') : '';
+      if (!origin || allowedOrigins.includes(normalizedOrigin) || process.env.NODE_ENV === 'development') {
         callback(null, true);
       } else {
+        logger.warn(`CORS blocked origin: ${origin}. Allowed origins: ${allowedOrigins.join(', ')}`);
         callback(new Error('Not allowed by CORS'));
       }
     },
