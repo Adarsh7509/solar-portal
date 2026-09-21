@@ -198,8 +198,9 @@ function App() {
 
           <nav className="hidden lg:flex items-center gap-6 text-xs xl:text-sm font-semibold text-slate-400">
             <Link to="/about" className="hover:text-yellow-500 transition-colors">About Us</Link>
+            <button onClick={() => handleNavClick('#leadership')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none font-semibold font-sans text-xs xl:text-sm text-slate-400">Leadership</button>
             <button onClick={() => handleNavClick('#solutions')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none font-semibold font-sans text-xs xl:text-sm text-slate-400">Solutions</button>
-            <button onClick={() => handleNavClick('#projects')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none font-semibold font-sans text-xs xl:text-sm text-slate-400">Projects</button>
+            <Link to="/projects" className="hover:text-yellow-500 transition-colors">Projects</Link>
             <button onClick={() => handleNavClick('#benefits')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none font-semibold font-sans text-xs xl:text-sm text-slate-400">Why Solar</button>
             <button onClick={() => handleNavClick('#faq')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none font-semibold font-sans text-xs xl:text-sm text-slate-400">FAQs</button>
             <Link to="/request-survey" className="hover:text-yellow-500 transition-colors">Contact Us</Link>
@@ -254,6 +255,7 @@ function App() {
       <main className="flex-1 mt-[73px]">
         <Routes>
           <Route path="/" element={<Home handleNavClick={handleNavClick} />} />
+          <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/request-survey" element={<RequestSurveyPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
@@ -426,6 +428,7 @@ function App() {
               </div>
               <ul className="space-y-2.5 text-sm text-slate-400 pl-13">
                 <li><Link to="/about#heritage" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-500 transition-colors flex items-center gap-1">Our Heritage <ChevronRight className="h-3 w-3" /></Link></li>
+                <li><Link to="/about#leadership" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-500 transition-colors flex items-center gap-1">Owner, CEO & Directors <ChevronRight className="h-3 w-3" /></Link></li>
                 <li><Link to="/about#vision" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-500 transition-colors flex items-center gap-1">Vision, Mission & Values <ChevronRight className="h-3 w-3" /></Link></li>
                 <li><Link to="/about#milestones" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-500 transition-colors flex items-center gap-1">Company Milestones <ChevronRight className="h-3 w-3" /></Link></li>
                 <li><Link to="/about#awards" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-500 transition-colors flex items-center gap-1">Awards & Recognition <ChevronRight className="h-3 w-3" /></Link></li>
@@ -491,18 +494,19 @@ function App() {
                   className="w-10 h-10 rounded-lg object-cover border border-slate-800"
                 />
                  <div>
-                   <button 
-                     onClick={() => handleNavClick('#projects')}
-                     className="text-sm font-extrabold text-white hover:text-yellow-500 transition-colors uppercase tracking-wider flex items-center gap-1.5 cursor-pointer bg-transparent border-none p-0 text-left font-sans"
+                   <Link 
+                     to="/projects"
+                     onClick={() => setIsMenuOpen(false)}
+                     className="text-sm font-extrabold text-white hover:text-yellow-500 transition-colors uppercase tracking-wider flex items-center gap-1.5 cursor-pointer"
                    >
                      Projects <Grid className="h-3.5 w-3.5 text-yellow-500" />
-                   </button>
+                   </Link>
                  </div>
               </div>
               <ul className="space-y-2.5 text-sm text-slate-400 pl-13">
-                <li><button onClick={() => handleNavClick('#projects')} className="hover:text-yellow-500 transition-colors flex items-center gap-1 bg-transparent border-none text-sm text-slate-400 cursor-pointer">Utility Scale EPC Solutions <ChevronRight className="h-3 w-3" /></button></li>
-                <li><button onClick={() => handleNavClick('#projects')} className="hover:text-yellow-500 transition-colors flex items-center gap-1 bg-transparent border-none text-sm text-slate-400 cursor-pointer">Rooftop Project Portfolios <ChevronRight className="h-3 w-3" /></button></li>
-                <li><button onClick={() => handleNavClick('#projects')} className="hover:text-yellow-500 transition-colors flex items-center gap-1 bg-transparent border-none text-sm text-slate-400 cursor-pointer">International Deployments <ChevronRight className="h-3 w-3" /></button></li>
+                <li><Link to="/projects" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-500 transition-colors flex items-center gap-1">All Commercial & Residential Projects <ChevronRight className="h-3 w-3" /></Link></li>
+                <li><Link to="/projects" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-500 transition-colors flex items-center gap-1">Utility Scale EPC Solutions <ChevronRight className="h-3 w-3" /></Link></li>
+                <li><Link to="/projects" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-500 transition-colors flex items-center gap-1">Rooftop Project Portfolios <ChevronRight className="h-3 w-3" /></Link></li>
               </ul>
             </div>
 
@@ -770,8 +774,8 @@ function Home({ handleNavClick }: HomeProps) {
         </div>
       </section>
 
-      {/* Our Projects Section (Task 1) */}
-      <OurProjects />
+      {/* Our Projects Section (Featured 6 on Home) */}
+      <OurProjects featuredOnly={true} />
 
       {/* 4-Step Solar Journey */}
       <SolarJourney />
@@ -840,6 +844,11 @@ function Home({ handleNavClick }: HomeProps) {
         </div>
       </section>
 
+      {/* Leadership Section */}
+      <div className="max-w-7xl w-full mx-auto px-6">
+        <LeadershipSection />
+      </div>
+
       {/* Reviews Section */}
       <ReviewsSection />
 
@@ -882,6 +891,10 @@ function Home({ handleNavClick }: HomeProps) {
 
 // Request Survey page component (Task 3)
 function RequestSurveyPage() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
+
   return (
     <section className="py-16 px-6 max-w-7xl w-full mx-auto space-y-12">
       <div className="text-center max-w-3xl mx-auto space-y-4 mb-8">
@@ -901,7 +914,7 @@ function RequestSurveyPage() {
         {/* Card 1: Main Office */}
         <div className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:border-yellow-500/30 hover:-translate-y-1">
           {/* Accent Line */}
-          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-cyan-500 to-yellow-500" />
+          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
           <div className="flex items-center gap-3.5 mb-4 mt-2">
             <div className="p-3 bg-yellow-500/10 rounded-2xl text-yellow-500">
               <MapPin className="h-5 w-5" />
@@ -918,7 +931,7 @@ function RequestSurveyPage() {
 
         {/* Card 2: Make a Call */}
         <div className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:border-yellow-500/30 hover:-translate-y-1">
-          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-cyan-500 to-yellow-500" />
+          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
           <div className="flex items-center gap-3.5 mb-4 mt-2">
             <div className="p-3 bg-cyan-500/10 rounded-2xl text-cyan-400">
               <PhoneCall className="h-5 w-5" />
@@ -929,7 +942,7 @@ function RequestSurveyPage() {
             <h4 className="text-xs font-black text-yellow-500">
               <a href="tel:+919509380380" className="hover:text-yellow-500 transition-colors">+91 95093 80380</a>
             </h4>
-            <p className="text-slate-200 text-xs font-bold">Himanshu Tikkar</p>
+            <p className="text-slate-200 text-xs font-bold">Himanshu Tilkar</p>
             <p className="text-slate-400 text-[11px] leading-relaxed">
               Mon - Sat: 09am - 08pm
             </p>
@@ -938,7 +951,7 @@ function RequestSurveyPage() {
 
         {/* Card 3: Send a Mail */}
         <div className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:border-yellow-500/30 hover:-translate-y-1">
-          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-cyan-500 to-yellow-500" />
+          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
           <div className="flex items-center gap-3.5 mb-4 mt-2">
             <div className="p-3 bg-emerald-500/10 rounded-2xl text-emerald-400">
               <Mail className="h-5 w-5" />
@@ -973,6 +986,144 @@ function RequestSurveyPage() {
         </div>
       </div>
     </section>
+  );
+}
+
+// Projects Page Component (Shows all 29+ real site installations)
+function ProjectsPage() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  return <OurProjects featuredOnly={false} />;
+}
+
+// Owner, CEO & Leadership Section Component
+function LeadershipSection() {
+  const leaders = [
+    {
+      name: "Rajendra Tilkar",
+      role: "Owner & Founder",
+      title: "Owner / Chairman",
+      image: "/team/rajendra_tilkar.jpg",
+      description: "Founder & Owner guiding TNS Clean Energy's strategic vision, corporate legacy, and commitment to green energy innovation.",
+      phone: "+91 95093 80380",
+      email: "himanshutikkar@gmail.com"
+    },
+    {
+      name: "Himanshu Tilkar",
+      role: "CEO & Managing Director",
+      title: "Chief Executive Officer",
+      image: "/team/himanshu_tilkar.jpg",
+      description: "Spearheading business operations, solar EPC project deployments, client partnerships, and technical engineering execution.",
+      phone: "+91 95093 80380",
+      email: "himanshutikkar@gmail.com"
+    },
+    {
+      name: "Executive Director",
+      role: "Director",
+      title: "Board Member / Director",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&auto=format&fit=crop&q=80",
+      description: "Directing technical quality control, project execution, and grid synchronization standard operating procedures.",
+      badge: "Photo Update Pending"
+    }
+  ];
+
+  return (
+    <div id="leadership" className="border-t border-slate-900 pt-16 space-y-12">
+      <ScrollReveal direction="up">
+        <div className="text-center max-w-2xl mx-auto space-y-3.5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 font-extrabold text-[10px] sm:text-[11px] uppercase tracking-widest shadow-sm">
+            <Sparkles className="h-3.5 w-3.5 text-yellow-400 animate-pulse" />
+            <span>Executive Leadership</span>
+          </div>
+
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-white font-sans">
+            Owner, CEO <span className="bg-gradient-to-r from-yellow-400 via-yellow-300 to-amber-400 bg-clip-text text-transparent font-black">&amp; Directors</span>
+          </h2>
+
+          <div className="w-16 h-0.5 mx-auto bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full" />
+
+          <p className="text-slate-400 text-xs sm:text-sm font-normal max-w-lg mx-auto leading-relaxed">
+            Meet the visionary leadership team behind TNS Clean Energy, dedicated to powering homes and businesses with clean, reliable solar energy.
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {leaders.map((leader, index) => (
+          <ScrollReveal key={index} direction="up" delay={index * 150}>
+            <div className="bg-gradient-to-b from-slate-900/60 via-slate-950/40 to-slate-950/80 backdrop-blur-md border border-slate-800/80 rounded-3xl p-6 hover:border-yellow-500/40 hover:shadow-2xl hover:shadow-yellow-500/10 transition-all duration-500 group flex flex-col justify-between h-full relative overflow-hidden">
+              
+              <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-yellow-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div>
+                {/* Photo container */}
+                <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden mb-6 border border-slate-800/80 shadow-lg bg-slate-900">
+                  <img
+                    src={leader.image}
+                    alt={leader.name}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                  
+                  {/* Badge overlays */}
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2">
+                    <span className="px-3 py-1 rounded-full bg-slate-950/90 border border-yellow-500/40 text-yellow-400 font-extrabold text-[10px] tracking-wider uppercase backdrop-blur-md shadow-md">
+                      {leader.role}
+                    </span>
+                    {leader.badge && (
+                      <span className="px-2.5 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/50 text-yellow-300 font-bold text-[9px] backdrop-blur-md">
+                        {leader.badge}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="space-y-2 text-left">
+                  <span className="text-[10px] font-bold text-yellow-500 uppercase tracking-widest block">
+                    {leader.title}
+                  </span>
+                  <h3 className="text-xl font-black text-white group-hover:text-yellow-400 transition-colors duration-300">
+                    {leader.name}
+                  </h3>
+                  <p className="text-slate-400 text-xs leading-relaxed pt-1">
+                    {leader.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom footer */}
+              <div className="pt-6 mt-6 border-t border-slate-900/80 flex items-center justify-between text-xs text-slate-400">
+                <span className="text-[11px] font-medium text-slate-500">TNS Leadership</span>
+                <div className="flex items-center gap-2">
+                  {leader.phone && (
+                    <a
+                      href={`tel:${leader.phone}`}
+                      className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-yellow-500/50 hover:bg-yellow-500 hover:text-slate-950 text-slate-300 transition-all duration-300"
+                      title={`Call ${leader.name}`}
+                    >
+                      <PhoneCall className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                  {leader.email && (
+                    <a
+                      href={`mailto:${leader.email}`}
+                      className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-yellow-500/50 hover:bg-yellow-500 hover:text-slate-950 text-slate-300 transition-all duration-300"
+                      title={`Email ${leader.name}`}
+                    >
+                      <Mail className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                </div>
+              </div>
+
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -1032,6 +1183,9 @@ function AboutPage() {
           </div>
         </ScrollReveal>
       </div>
+
+      {/* Leadership Section */}
+      <LeadershipSection />
 
       {/* Vision, Mission & Values Section */}
       <div id="vision" className="border-t border-slate-900 pt-16 space-y-12">

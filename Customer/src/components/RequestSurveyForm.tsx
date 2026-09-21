@@ -14,10 +14,23 @@ const STATES = [
 ];
 
 export function RequestSurveyForm() {
-  const [activeTab, setActiveTab] = useState<FormTab>('service'); // Default to Service tab as it's the primary ticket form
+  const [activeTab, setActiveTab] = useState<FormTab>('enquiry'); // Default to Enquiry form for Free Site Survey & Quote
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+
+  // Auto detect URL tab parameter if present (?tab=service or ?tab=enquiry)
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const tabParam = params.get('tab');
+    if (tabParam === 'service' || tabParam === 'complaint' || tabParam === 'ticket') {
+      setActiveTab('service');
+    } else if (tabParam === 'feedback') {
+      setActiveTab('feedback');
+    } else if (tabParam === 'enquiry' || tabParam === 'survey' || tabParam === 'quote') {
+      setActiveTab('enquiry');
+    }
+  }, []);
 
   // --- Main Enquiry Form Fields ---
   const [enquiryForm, setEnquiryForm] = useState({
@@ -356,7 +369,7 @@ ${ticketForm.issueDetail}
       {activeTab === 'enquiry' && (
         <form onSubmit={handleSubmit} className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 md:p-8 space-y-6">
           <h2 className="text-xl font-bold text-white flex items-center gap-2 border-b border-slate-900 pb-3">
-            <span>General Solar Enquiry</span>
+            <span>Request Free Site Survey &amp; Solar Quote</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
@@ -414,7 +427,7 @@ ${ticketForm.issueDetail}
           </div>
 
           <button type="submit" disabled={loading} className="w-full py-4 font-extrabold text-sm rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 shadow-lg shadow-yellow-500/10 glitter-border-btn-yellow">
-            {loading ? <Loader2 className="h-4.5 w-4.5 animate-spin" /> : 'Submit Enquiry'}
+            {loading ? <Loader2 className="h-4.5 w-4.5 animate-spin" /> : 'Request Free Site Survey & Quote'}
           </button>
         </form>
       )}
