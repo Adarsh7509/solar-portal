@@ -40,17 +40,8 @@ export async function submitLead(req: Request, res: Response, next: NextFunction
 
     logger.info(`Customer query saved successfully. ID: ${newQuery.id}`);
 
-    // Send email notification asynchronously
-    sendQueryEmail({
-      name,
-      email,
-      phone,
-      address,
-      city,
-      monthlyElectricityBill,
-      solarCapacityInterested,
-      message,
-    }).catch((err) => {
+    // Send email notification asynchronously with full payload details
+    sendQueryEmail(value).catch((err) => {
       logger.error(`Deferred email send failed for query ID: ${newQuery.id}`, {
         error: err.message,
       });

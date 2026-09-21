@@ -25,7 +25,23 @@ export const submitLeadSchema = Joi.object({
     'number.positive': 'Monthly electricity bill must be greater than zero',
   }),
   solarCapacityInterested: Joi.string().trim().max(100).allow('', null),
-  message: Joi.string().trim().max(2000).allow('', null),
+  message: Joi.string().trim().max(5000).allow('', null),
+
+  // Optional form type & feedback/service details
+  type: Joi.string().valid('enquiry', 'service', 'feedback').optional(),
+  rating: Joi.number().min(1).max(5).optional(),
+  feedbackType: Joi.string().trim().max(255).optional(),
+  alternatePhone: Joi.string().trim().allow('', null).optional(),
+  serviceCategory: Joi.string().trim().allow('', null).optional(),
+  productCategory: Joi.string().trim().allow('', null).optional(),
+  productSubcategory: Joi.string().trim().allow('', null).optional(),
+  capacity: Joi.string().trim().allow('', null).optional(),
+  issueType: Joi.string().trim().allow('', null).optional(),
+  quantity: Joi.number().optional(),
+  serialNumber: Joi.string().trim().allow('', null).optional(),
+  purchaseDate: Joi.string().trim().allow('', null).optional(),
+  invoiceFileName: Joi.string().trim().allow('', null).optional(),
+  serialFileName: Joi.string().trim().allow('', null).optional(),
 });
 
 export const updateLeadStatusSchema = Joi.object({
