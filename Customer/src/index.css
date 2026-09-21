@@ -90,11 +90,21 @@ body {
 .light .bg-slate-900\/30,
 .light .bg-slate-900,
 .light .bg-slate-950,
-.light .bg-slate-950\/40,
 .light .bg-slate-950\/80,
 .light .bg-slate-900\/50 {
   background-color: #f8fafc !important;
   border-color: #e2e8f0 !important;
+}
+
+/* Image hover overlay must stay translucent dark background so photo & badge remain visible */
+.light .bg-slate-950\/40 {
+  background-color: rgba(15, 23, 42, 0.5) !important;
+  border-color: transparent !important;
+}
+
+/* Ensure bg-clip-text remains transparent for gradients like TNS logo */
+.light .bg-clip-text {
+  color: transparent !important;
 }
 
 .light .border-slate-800, 
@@ -148,13 +158,13 @@ body {
   color: #1e293b !important;
 }
 
-.light button:not(.bg-yellow-500):not(.bg-white) {
+.light button:not(.bg-yellow-500):not(.bg-white):not(.menu-header-btn) {
   background-color: #f1f5f9 !important;
   border-color: #e2e8f0 !important;
   color: #1e293b !important;
 }
 
-.light button:not(.bg-yellow-500):not(.bg-white):hover {
+.light button:not(.bg-yellow-500):not(.bg-white):not(.menu-header-btn):hover {
   background-color: #e2e8f0 !important;
 }
 
@@ -180,9 +190,23 @@ body {
   border-color: #e2e8f0 !important;
 }
 
+.light .bg-slate-950\/98 .text-white,
 .light .bg-slate-950\/98 h4, 
-.light .bg-slate-950\/98 span {
+.light .bg-slate-950\/98 span,
+.light .bg-slate-950\/98 a.text-white,
+.light .bg-slate-950\/98 button.text-white {
   color: #0f172a !important;
+}
+
+.light .bg-slate-950\/98 button.menu-header-btn {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: #0f172a !important;
+}
+
+.light .bg-slate-950\/98 button.menu-header-btn:hover {
+  background-color: transparent !important;
+  color: #ca8a04 !important;
 }
 
 .light .bg-slate-950\/98 ul a {
@@ -219,6 +243,8 @@ body {
   background-color: rgba(255, 255, 255, 0.94) !important;
 }
 
+.light footer .text-white,
+.light footer h4,
 .light footer h5 {
   color: #0f172a !important;
 }

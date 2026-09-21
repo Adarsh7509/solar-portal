@@ -28,6 +28,7 @@ import {
   Moon,
   MapPin,
   Star,
+  MessageSquare,
 } from 'lucide-react';
 
 const SLIDES = [
@@ -152,6 +153,29 @@ function App() {
     }
   };
 
+  // Dynamic SEO metadata per route
+  useEffect(() => {
+    let title = "TNS Clean Energy | #1 Solar Panel Installation & Rooftop Solar Company in Jaipur, Rajasthan";
+    let metaDescription = "TNS Clean Energy is Rajasthan's leading rooftop solar panel installer. Get up to ₹78,000 Govt PM Surya Ghar subsidy, net-metering & 25-year panel warranty. Call +91 95093 80380 for a free site survey in Jaipur!";
+
+    if (location.pathname === '/about') {
+      title = "About TNS Clean Energy | Premier Solar EPC Company in Rajasthan";
+      metaDescription = "Learn about TNS Clean Energy, Rajasthan's trusted solar installation provider guided by visionary engineering leadership, delivering high-performance rooftop solar arrays.";
+    } else if (location.pathname === '/projects') {
+      title = "Verified Solar Projects Portfolio | Commercial & Residential Solar Jaipur";
+      metaDescription = "Browse 29+ verified rooftop solar installations across Jaipur & Rajasthan. High-efficiency commercial solar plants and residential PM Surya Ghar solar systems.";
+    } else if (location.pathname === '/request-survey') {
+      title = "Request Free Solar Site Survey & Price Quote | TNS Clean Energy";
+      metaDescription = "Book a free on-site solar survey & cost estimate in Jaipur, Rajasthan. Claim up to ₹78,000 PM Surya Ghar government subsidy with hassle-free net-metering setup.";
+    }
+
+    document.title = title;
+    const descMeta = document.querySelector('meta[name="description"]');
+    if (descMeta) {
+      descMeta.setAttribute('content', metaDescription);
+    }
+  }, [location.pathname]);
+
   // Scroll to hash on page change (e.g. going from /request-survey back to /#solutions)
   useEffect(() => {
     if (location.hash && location.pathname === '/') {
@@ -203,6 +227,7 @@ function App() {
             <Link to="/projects" className="hover:text-yellow-500 transition-colors">Projects</Link>
             <button onClick={() => handleNavClick('#benefits')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none font-semibold font-sans text-xs xl:text-sm text-slate-400">Why Solar</button>
             <button onClick={() => handleNavClick('#faq')} className="hover:text-yellow-500 transition-colors cursor-pointer bg-transparent border-none font-semibold font-sans text-xs xl:text-sm text-slate-400">FAQs</button>
+            <Link to="/request-survey?tab=feedback" className="hover:text-yellow-500 transition-colors">Feedback</Link>
             <Link to="/request-survey" className="hover:text-yellow-500 transition-colors">Contact Us</Link>
           </nav>
 
@@ -247,6 +272,12 @@ function App() {
           <Mail className="h-5 w-5" />
           <span className="absolute right-full mr-2.5 top-1/2 -translate-y-1/2 bg-slate-950 border border-slate-800 text-white text-xs px-2.5 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-lg">
             Send Inquiry
+          </span>
+        </Link>
+        <Link to="/request-survey?tab=feedback" className="p-3.5 hover:bg-yellow-500 hover:text-slate-950 text-slate-400 transition-colors group relative border-t border-slate-900" title="Provide Feedback">
+          <MessageSquare className="h-5 w-5" />
+          <span className="absolute right-full mr-2.5 top-1/2 -translate-y-1/2 bg-slate-950 border border-slate-800 text-white text-xs px-2.5 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-lg">
+            Give Feedback
           </span>
         </Link>
       </div>
@@ -337,7 +368,7 @@ function App() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Mail className="h-3.5 w-3.5 text-yellow-500 shrink-0" />
-                  <a href="mailto:himanshutikkar@gmail.com" className="hover:text-yellow-500 transition-colors font-medium">himanshutikkar@gmail.com</a>
+                  <a href="mailto:himanshutilkar@gmail.com" className="hover:text-yellow-500 transition-colors font-medium">himanshutilkar@gmail.com</a>
                 </li>
                 <li className="pt-2 flex items-center gap-3 text-slate-400">
                   <a href="#" className="hover:text-yellow-500 transition-colors"><Facebook className="h-4 w-4" /></a>
@@ -446,7 +477,7 @@ function App() {
                  <div>
                    <button 
                      onClick={() => handleNavClick('#solutions')}
-                     className="text-sm font-extrabold text-white hover:text-yellow-500 transition-colors uppercase tracking-wider flex items-center gap-1.5 cursor-pointer bg-transparent border-none p-0 text-left font-sans"
+                     className="menu-header-btn text-sm font-extrabold text-white hover:text-yellow-500 transition-colors uppercase tracking-wider flex items-center gap-1.5 cursor-pointer bg-transparent border-none p-0 text-left font-sans"
                    >
                      Rooftops <Flame className="h-3.5 w-3.5 text-yellow-500" />
                    </button>
@@ -472,7 +503,7 @@ function App() {
                  <div>
                    <button 
                      onClick={() => handleNavClick('#benefits')}
-                     className="text-sm font-extrabold text-white hover:text-yellow-500 transition-colors uppercase tracking-wider flex items-center gap-1.5 cursor-pointer bg-transparent border-none p-0 text-left font-sans"
+                     className="menu-header-btn text-sm font-extrabold text-white hover:text-yellow-500 transition-colors uppercase tracking-wider flex items-center gap-1.5 cursor-pointer bg-transparent border-none p-0 text-left font-sans"
                    >
                      Sustainability <Globe className="h-3.5 w-3.5 text-yellow-500" />
                    </button>
@@ -960,10 +991,10 @@ function RequestSurveyPage() {
           </div>
           <div className="space-y-2">
             <h4 className="text-xs font-black text-yellow-500">
-              <a href="mailto:himanshutikkar@gmail.com" className="hover:text-yellow-500 transition-colors">himanshutikkar@gmail.com</a>
+              <a href="mailto:himanshutilkar@gmail.com" className="hover:text-yellow-500 transition-colors">himanshutilkar@gmail.com</a>
             </h4>
             <p className="text-slate-400 text-[11px] leading-relaxed">
-              himanshutikkar@gmail.com
+              himanshutilkar@gmail.com
             </p>
           </div>
         </div>
@@ -1008,7 +1039,7 @@ function LeadershipSection() {
       image: "/team/rajendra_tilkar.jpg",
       description: "Founder & Owner guiding TNS Clean Energy's strategic vision, corporate legacy, and commitment to green energy innovation.",
       phone: "+91 95093 80380",
-      email: "himanshutikkar@gmail.com"
+      email: "himanshutilkar@gmail.com"
     },
     {
       name: "Himanshu Tilkar",
@@ -1017,7 +1048,7 @@ function LeadershipSection() {
       image: "/team/himanshu_tilkar.jpg",
       description: "Spearheading business operations, solar EPC project deployments, client partnerships, and technical engineering execution.",
       phone: "+91 95093 80380",
-      email: "himanshutikkar@gmail.com"
+      email: "himanshutilkar@gmail.com"
     },
     {
       name: "Executive Director",
@@ -1383,14 +1414,22 @@ function ReviewsSection() {
   return (
     <section className="max-w-7xl w-full mx-auto px-6 py-20 border-t border-slate-900">
       <ScrollReveal direction="up">
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-xs font-semibold text-yellow-500 uppercase tracking-wider">Testimonials</span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-1.5">
-            What Our Customers Say
-          </h2>
-          <p className="text-slate-400">
-            Real feedback from homeowners and businesses who switched to TNS Clean Energy.
-          </p>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-16 text-center md:text-left">
+          <div className="space-y-2 max-w-2xl">
+            <span className="text-xs font-semibold text-yellow-500 uppercase tracking-wider">Testimonials</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-1.5">
+              What Our Customers Say
+            </h2>
+            <p className="text-slate-400">
+              Real feedback from homeowners and businesses who switched to TNS Clean Energy.
+            </p>
+          </div>
+          <Link 
+            to="/request-survey?tab=feedback" 
+            className="px-5 py-3 bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-yellow-500/10 transition flex items-center gap-2 shrink-0 cursor-pointer"
+          >
+            <MessageSquare className="h-4 w-4" /> Share Your Feedback
+          </Link>
         </div>
       </ScrollReveal>
 

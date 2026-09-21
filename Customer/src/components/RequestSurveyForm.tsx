@@ -37,7 +37,7 @@ export function RequestSurveyForm() {
     name: '',
     email: '',
     phone: '',
-    state: 'Uttar Pradesh',
+    state: 'Rajasthan',
     city: '',
     category: 'residential',
     message: '',
@@ -48,7 +48,7 @@ export function RequestSurveyForm() {
     name: '',
     email: '',
     phone: '',
-    state: 'Uttar Pradesh',
+    state: 'Rajasthan',
     city: '',
     rating: 5,
     feedbackType: 'Service Quality',
@@ -72,7 +72,7 @@ export function RequestSurveyForm() {
     locality: '',
     postOffice: '',
     tahsil: '',
-    state: 'Uttar Pradesh',
+    state: 'Rajasthan',
     district: '',
     city: '',
     pincode: '',
@@ -139,77 +139,52 @@ export function RequestSurveyForm() {
 
     try {
       if (activeTab === 'enquiry') {
-        const messageText = `
-[GENERAL ENQUIRY]
-Category Interested: ${enquiryForm.category.toUpperCase()}
-Message / Requirements:
-${enquiryForm.message}
-`;
         payload = {
+          type: 'enquiry',
           name: enquiryForm.name,
           email: enquiryForm.email,
           phone: enquiryForm.phone,
           address: 'N/A - General Enquiry',
-          city: enquiryForm.city || 'N/A',
-          monthlyElectricityBill: 1,
+          city: enquiryForm.city || 'Jaipur',
           solarCapacityInterested: enquiryForm.category === 'residential' ? '3 kW - 5 kW System' : '10+ kW Commercial / Industrial Setup',
-          message: messageText.trim(),
+          message: enquiryForm.message,
         };
       } 
       else if (activeTab === 'feedback') {
-        const messageText = `
-[FEEDBACK SUBMISSION]
-Feedback Category: ${feedbackForm.feedbackType}
-Rating Score: ${feedbackForm.rating} Stars
-Comments:
-${feedbackForm.message}
-`;
         payload = {
+          type: 'feedback',
           name: feedbackForm.name,
           email: feedbackForm.email,
           phone: feedbackForm.phone,
-          address: 'N/A - Feedback Form',
-          city: feedbackForm.city || 'N/A',
-          monthlyElectricityBill: 1,
-          solarCapacityInterested: 'Feedback Query',
-          message: messageText.trim(),
+          address: 'N/A - Feedback Submission',
+          city: feedbackForm.city || 'Jaipur',
+          rating: feedbackForm.rating,
+          feedbackType: feedbackForm.feedbackType,
+          message: feedbackForm.message,
         };
       } 
       else if (activeTab === 'service') {
-        // Detailed Submit Ticket Form
         const formattedAddress = `${ticketForm.doorNo}, ${ticketForm.street}, ${ticketForm.landmark ? `Near ${ticketForm.landmark}, ` : ''}${ticketForm.locality}, Post: ${ticketForm.postOffice}, Tahsil: ${ticketForm.tahsil}, ${ticketForm.city}, ${ticketForm.district}, ${ticketForm.state} - ${ticketForm.pincode}`;
         
-        const messageText = `
-[TICKET SUBMITTED - CUSTOMER COMPLAINT]
-Customer Type: ${ticketForm.customerType}
-Alternate Mobile: ${ticketForm.alternatePhone ? `+91 ${ticketForm.alternatePhone}` : 'None'}
-
-Service Request Category: ${ticketForm.serviceCategory}
-Product Category: ${ticketForm.productCategory}
-Product Subcategory: ${ticketForm.productSubcategory}
-Capacity: ${ticketForm.capacity}
-Type of Issue/Fault: ${ticketForm.issueType}
-Quantity: ${ticketForm.quantity}
-Serial Number: ${ticketForm.serialNumber}
-Purchase Date: ${ticketForm.purchaseDate || 'N/A'}
-
-File Attachments Logged:
-- Invoice copy: ${ticketForm.invoiceFileName || 'Not Uploaded'}
-- Serial Plate photo: ${ticketForm.serialFileName || 'Not Uploaded'}
-
-Issue Description:
-${ticketForm.issueDetail}
-`;
-
         payload = {
+          type: 'service',
           name: ticketForm.name,
           email: ticketForm.email,
           phone: ticketForm.phone,
+          alternatePhone: ticketForm.alternatePhone,
           address: formattedAddress,
           city: ticketForm.city,
-          monthlyElectricityBill: 1,
-          solarCapacityInterested: `Service: ${ticketForm.capacity}`,
-          message: messageText.trim(),
+          serviceCategory: ticketForm.serviceCategory,
+          productCategory: ticketForm.productCategory,
+          productSubcategory: ticketForm.productSubcategory,
+          capacity: ticketForm.capacity,
+          issueType: ticketForm.issueType,
+          quantity: ticketForm.quantity,
+          serialNumber: ticketForm.serialNumber,
+          purchaseDate: ticketForm.purchaseDate,
+          invoiceFileName: ticketForm.invoiceFileName,
+          serialFileName: ticketForm.serialFileName,
+          message: ticketForm.issueDetail,
         };
       }
 
@@ -243,7 +218,7 @@ ${ticketForm.issueDetail}
       name: '',
       email: '',
       phone: '',
-      state: 'Uttar Pradesh',
+      state: 'Rajasthan',
       city: '',
       category: 'residential',
       message: '',
@@ -252,7 +227,7 @@ ${ticketForm.issueDetail}
       name: '',
       email: '',
       phone: '',
-      state: 'Uttar Pradesh',
+      state: 'Rajasthan',
       city: '',
       rating: 5,
       feedbackType: 'Service Quality',
@@ -271,7 +246,7 @@ ${ticketForm.issueDetail}
       locality: '',
       postOffice: '',
       tahsil: '',
-      state: 'Uttar Pradesh',
+      state: 'Rajasthan',
       district: '',
       city: '',
       pincode: '',
@@ -295,15 +270,35 @@ ${ticketForm.issueDetail}
         <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-950/50 text-yellow-500 mb-6 border border-yellow-900/30">
           <CheckCircle2 className="h-9 w-9" />
         </div>
-        <h3 className="text-2xl font-black text-white mb-3">Ticket Submitted Successfully!</h3>
-        <p className="text-slate-400 text-sm leading-relaxed max-w-lg mx-auto mb-8">
-          Your service ticket and details have been registered. Our solar service coordinators and field engineers will evaluate the complaints/issues and follow up within 24 hours.
-        </p>
+        
+        {activeTab === 'feedback' ? (
+          <>
+            <h3 className="text-2xl font-black text-white mb-3">Feedback Submitted!</h3>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-lg mx-auto mb-8">
+              Thanks for your valuable feedback. Your review helps us continuously improve our solar products and customer service.
+            </p>
+          </>
+        ) : activeTab === 'service' ? (
+          <>
+            <h3 className="text-2xl font-black text-white mb-3">Service Ticket Submitted Successfully!</h3>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-lg mx-auto mb-8">
+              Your service ticket and details have been registered. Our solar service engineering team will evaluate your fault report and follow up within 24 hours.
+            </p>
+          </>
+        ) : (
+          <>
+            <h3 className="text-2xl font-black text-white mb-3">Enquiry Submitted Successfully!</h3>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-lg mx-auto mb-8">
+              Thank you for reaching out to TNS Clean Energy. Our solar engineering team will perform a satellite feasibility check and contact you shortly.
+            </p>
+          </>
+        )}
+
         <button
           onClick={resetForm}
           className="px-8 py-3.5 bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-extrabold text-sm rounded-xl transition duration-300 shadow-lg shadow-yellow-500/10 cursor-pointer"
         >
-          Submit Another Ticket / Query
+          {activeTab === 'feedback' ? 'Submit Another Feedback' : activeTab === 'service' ? 'Submit Another Ticket' : 'Submit Another Request'}
         </button>
       </div>
     );

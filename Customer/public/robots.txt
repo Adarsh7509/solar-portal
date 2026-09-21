@@ -1,0 +1,10 @@
+# User-agent configuration for TNS Clean Energy
+User-agent: *
+Allow: /
+
+# Disallow administrative and private API endpoints
+Disallow: /api/
+Disallow: /admin/
+
+# XML Sitemap index
+Sitemap: https://solar-portal-three.vercel.app/sitemap.xml
