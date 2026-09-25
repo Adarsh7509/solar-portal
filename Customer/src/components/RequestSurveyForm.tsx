@@ -88,9 +88,11 @@ export function RequestSurveyForm() {
     serialNumber: '',
     purchaseDate: '',
 
-    // Files (Display names)
+    // Files (Display names & Base64 Data URLs)
     invoiceFileName: '',
+    invoiceFileDataUrl: '',
     serialFileName: '',
+    serialFileDataUrl: '',
   });
 
   const handleEnquiryChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -119,9 +121,22 @@ export function RequestSurveyForm() {
     });
   };
 
-  const handleTicketFileChange = (e: React.ChangeEvent<HTMLInputElement>, fieldName: 'invoiceFileName' | 'serialFileName') => {
+  const handleTicketFileChange = (
+    e: React.ChangeEvent<HTMLInputElement>, 
+    nameField: 'invoiceFileName' | 'serialFileName',
+    dataField: 'invoiceFileDataUrl' | 'serialFileDataUrl'
+  ) => {
     if (e.target.files && e.target.files.length > 0) {
-      setTicketForm({ ...ticketForm, [fieldName]: e.target.files[0].name });
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        setTicketForm(prev => ({
+          ...prev,
+          [nameField]: file.name,
+          [dataField]: reader.result as string,
+        }));
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -183,7 +198,9 @@ export function RequestSurveyForm() {
           serialNumber: ticketForm.serialNumber,
           purchaseDate: ticketForm.purchaseDate,
           invoiceFileName: ticketForm.invoiceFileName,
+          invoiceFileDataUrl: ticketForm.invoiceFileDataUrl,
           serialFileName: ticketForm.serialFileName,
+          serialFileDataUrl: ticketForm.serialFileDataUrl,
           message: ticketForm.issueDetail,
         };
       }
@@ -260,7 +277,9 @@ export function RequestSurveyForm() {
       serialNumber: '',
       purchaseDate: '',
       invoiceFileName: '',
+      invoiceFileDataUrl: '',
       serialFileName: '',
+      serialFileDataUrl: '',
     });
   };
 
@@ -633,7 +652,7 @@ export function RequestSurveyForm() {
                 <Upload className="h-6 w-6 text-slate-500 mb-2" />
                 <span className="text-[10px] font-extrabold text-slate-300">Invoice Attachment</span>
                 <span className="text-[9px] text-slate-500 mt-1">Allowed formats: JPG, PNG, PDF (Max 5MB)</span>
-                <input type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={(e) => handleTicketFileChange(e, 'invoiceFileName')} className="absolute inset-0 opacity-0 cursor-pointer" />
+                <input type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={(e) => handleTicketFileChange(e, 'invoiceFileName', 'invoiceFileDataUrl')} className="absolute inset-0 opacity-0 cursor-pointer" />
                 {ticketForm.invoiceFileName && (
                   <span className="text-[9px] text-yellow-500 font-bold mt-2 bg-yellow-950/30 px-2 py-0.5 border border-yellow-900/30 rounded-lg">
                     ✓ {ticketForm.invoiceFileName}
@@ -645,7 +664,7 @@ export function RequestSurveyForm() {
                 <Upload className="h-6 w-6 text-slate-500 mb-2" />
                 <span className="text-[10px] font-extrabold text-slate-300">Serial No. Attachment</span>
                 <span className="text-[9px] text-slate-500 mt-1">Allowed formats: JPG, PNG, PDF (5MB each)</span>
-                <input type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={(e) => handleTicketFileChange(e, 'serialFileName')} className="absolute inset-0 opacity-0 cursor-pointer" />
+                <input type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={(e) => handleTicketFileChange(e, 'serialFileName', 'serialFileDataUrl')} className="absolute inset-0 opacity-0 cursor-pointer" />
                 {ticketForm.serialFileName && (
                   <span className="text-[9px] text-yellow-500 font-bold mt-2 bg-yellow-950/30 px-2 py-0.5 border border-yellow-900/30 rounded-lg">
                     ✓ {ticketForm.serialFileName}

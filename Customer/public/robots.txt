@@ -7,4 +7,4 @@ Disallow: /api/
 Disallow: /admin/
 
 # XML Sitemap index
-Sitemap: https://solar-portal-three.vercel.app/sitemap.xml
+Sitemap: https://tnssolarenergy.com/sitemap.xml

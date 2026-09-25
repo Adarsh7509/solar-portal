@@ -139,6 +139,15 @@ function App() {
     };
   }, [isMenuOpen]);
 
+  // Silent background warmup for Render backend API (Cold Start Prevention)
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    // Wakes up sleeping Render instance silently as soon as user opens the site
+    fetch(`${apiUrl}/health`, { method: 'GET' }).catch(() => {
+      // Non-blocking silent catch
+    });
+  }, []);
+
   // Handle cross-page section navigation & smooth scroll
   const handleNavClick = (sectionId: string) => {
     setIsMenuOpen(false);

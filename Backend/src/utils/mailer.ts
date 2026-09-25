@@ -26,7 +26,9 @@ export interface QueryMailPayload {
   serialNumber?: string;
   purchaseDate?: string;
   invoiceFileName?: string;
+  invoiceFileDataUrl?: string;
   serialFileName?: string;
+  serialFileDataUrl?: string;
 }
 
 export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean> {
@@ -63,6 +65,57 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
     const emptyStar = '☆';
     return `${fullStar.repeat(rating)}${emptyStar.repeat(5 - rating)} (${rating}/5 Stars)`;
   };
+
+  // Helper to format interactive file attachments in HTML
+  const formatAttachmentCell = (fileName?: string, fileDataUrl?: string) => {
+    if (!fileName) return '<span style="color:#94a3b8;font-style:italic;">Not Uploaded</span>';
+    
+    if (fileDataUrl && fileDataUrl.startsWith('data:image/')) {
+      return `
+        <div style="margin-top: 6px;">
+          <div style="font-weight: 600; color: #0f172a; font-size: 12px; margin-bottom: 6px;">✓ ${fileName}</div>
+          <a href="${fileDataUrl}" target="_blank" download="${fileName}" style="display: inline-block;">
+            <img src="${fileDataUrl}" alt="${fileName}" style="max-width: 320px; max-height: 240px; border-radius: 8px; border: 1px solid #cbd5e1; box-shadow: 0 4px 10px rgba(0,0,0,0.08); display: block;" />
+          </a>
+          <div style="margin-top: 8px;">
+            <a href="${fileDataUrl}" target="_blank" download="${fileName}" style="display: inline-block; padding: 6px 14px; background-color: #0f172a; color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 11px; font-weight: bold; border-bottom: 2px solid #eab308;">
+              View / Open Image (${fileName})
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    if (fileDataUrl && fileDataUrl.startsWith('data:application/pdf')) {
+      return `
+        <div style="margin-top: 6px;">
+          <div style="font-weight: 600; color: #0f172a; font-size: 12px; margin-bottom: 6px;">📄 ${fileName} (PDF Document)</div>
+          <a href="${fileDataUrl}" target="_blank" download="${fileName}" style="display: inline-block; padding: 6px 14px; background-color: #0f172a; color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 11px; font-weight: bold; border-bottom: 2px solid #eab308;">
+            View / Open PDF (${fileName})
+          </a>
+        </div>
+      `;
+    }
+
+    return `<span>${fileName}</span>`;
+  };
+
+  // Construct email attachment objects for Resend API
+  const attachments: Array<{ filename: string; content: string }> = [];
+
+  if (payload.invoiceFileDataUrl && payload.invoiceFileDataUrl.includes('base64,')) {
+    attachments.push({
+      filename: payload.invoiceFileName || 'Invoice_Attachment.jpg',
+      content: payload.invoiceFileDataUrl.split('base64,')[1],
+    });
+  }
+
+  if (payload.serialFileDataUrl && payload.serialFileDataUrl.includes('base64,')) {
+    attachments.push({
+      filename: payload.serialFileName || 'Serial_Plate_Attachment.jpg',
+      content: payload.serialFileDataUrl.split('base64,')[1],
+    });
+  }
 
   if (formType === 'feedback') {
     // -------------------------------------------------------------
@@ -170,7 +223,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
             <div class="content-body">
               <div class="section-title">New Service Support Ticket Registered</div>
               <p style="font-size: 13px; color: #475569; margin-bottom: 20px;">
-                A customer has logged a service request / technical complaint. Details below:
+                A customer has logged a service request / technical complaint. Details and uploaded file attachments below:
               </p>
               <table class="info-table">
                 <tr><td class="label">Customer Name</td><td class="value">${payload.name}</td></tr>
@@ -180,14 +233,14 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
                 <tr><td class="label">Installation Site Address</td><td class="value">${payload.address || 'Address provided in system'}</td></tr>
                 <tr><td class="label">City / Region</td><td class="value">${payload.city || 'Jaipur'}</td></tr>
                 <tr><td class="label">Service Category</td><td class="value">${ticketCategory}</td></tr>
-                <tr><td class="label">Product Category</td><td class="value">${payload.productCategory || 'Solar PV System'}</td></tr>
+                <tr><td class="label">Product Category</td><td class="value">${payload.productCategory || 'Solar PV Modules'}</td></tr>
                 <tr><td class="label">Product Subcategory</td><td class="value">${payload.productSubcategory || 'Mono PERC'}</td></tr>
                 <tr><td class="label">Solar System Capacity</td><td class="value">${payload.capacity || payload.solarCapacityInterested || '5 kW'}</td></tr>
                 <tr><td class="label">Fault / Issue Type</td><td class="value" style="color: #dc2626; font-weight: bold;">${payload.issueType || 'Technical Inspection Needed'}</td></tr>
                 <tr><td class="label">Serial Number</td><td class="value">${payload.serialNumber || 'N/A'}</td></tr>
                 <tr><td class="label">Purchase Date</td><td class="value">${payload.purchaseDate || 'N/A'}</td></tr>
-                <tr><td class="label">Invoice File</td><td class="value">${payload.invoiceFileName || 'Not Uploaded'}</td></tr>
-                <tr><td class="label">Serial Plate File</td><td class="value">${payload.serialFileName || 'Not Uploaded'}</td></tr>
+                <tr><td class="label">Invoice Copy File</td><td class="value">${formatAttachmentCell(payload.invoiceFileName, payload.invoiceFileDataUrl)}</td></tr>
+                <tr><td class="label">Serial Plate File</td><td class="value">${formatAttachmentCell(payload.serialFileName, payload.serialFileDataUrl)}</td></tr>
               </table>
               <div style="font-size: 13px; font-weight: 700; color: #0f172a; margin-top: 16px;">Issue Description:</div>
               <div class="quote-box">"${cleanIssue}"</div>
@@ -325,6 +378,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
       logger.info(`TO (Admin): ${mailTo}`);
       logger.info(`FROM: ${mailFrom}`);
       logger.info(`SUBJECT: ${subjectAdmin}`);
+      logger.info(`ATTACHMENTS COUNT: ${attachments.length}`);
       logger.info(`BODY:\n${adminHtmlContent}`);
       if (payload.email) {
         logger.info(`TO (Customer): ${payload.email}`);
@@ -346,6 +400,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
         ...(payload.email && { replyTo: payload.email }),
         subject: subjectAdmin,
         html: adminHtmlContent,
+        ...(attachments.length > 0 && { attachments }),
       }),
     });
 
