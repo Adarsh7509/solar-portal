@@ -94,7 +94,7 @@ export function CustomerLeadForm() {
           Get Free Feasibility Analysis
         </span>
         <h2 className="text-2xl font-black text-white mt-3 tracking-tight">
-          Request Site Survey
+          Book On-Call Consultation
         </h2>
         <p className="text-slate-400 mt-1.5 text-xs">
           Provide your monthly usage details below for an engineering assessment.

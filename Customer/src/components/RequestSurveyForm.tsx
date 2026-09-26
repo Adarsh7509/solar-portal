@@ -382,8 +382,8 @@ export function RequestSurveyForm() {
       {/* --- FORM 1: GENERAL ENQUIRY --- */}
       {activeTab === 'enquiry' && (
         <form onSubmit={handleSubmit} className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 md:p-8 space-y-6">
-          <h2 className="text-xl font-bold text-white flex items-center gap-2 border-b border-slate-900 pb-3">
-            <span>Request Free Site Survey &amp; Solar Quote</span>
+          <h2 className="text-1xl font-bold text-white flex items-center gap-2 border-b border-slate-900 pb-3">
+            <span>Request On-Call Solar Consultation &amp; Quote</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
@@ -429,7 +429,6 @@ export function RequestSurveyForm() {
                 <option value="residential">Residential Solar Roofs</option>
                 <option value="commercial">Commercial Rooftops</option>
                 <option value="industrial">Industrial Power Plants</option>
-                <option value="pumps">Solar Water Pumps</option>
                 <option value="utility">Utility Scale Projects</option>
               </select>
             </div>
@@ -441,7 +440,7 @@ export function RequestSurveyForm() {
           </div>
 
           <button type="submit" disabled={loading} className="w-full py-4 font-extrabold text-sm rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 shadow-lg shadow-yellow-500/10 glitter-border-btn-yellow">
-            {loading ? <Loader2 className="h-4.5 w-4.5 animate-spin" /> : 'Request Free Site Survey & Quote'}
+            {loading ? <Loader2 className="h-4.5 w-4.5 animate-spin" /> : 'Book On-Call Consultation & Quote'}
           </button>
         </form>
       )}
@@ -585,7 +584,6 @@ export function RequestSurveyForm() {
                   <option value="Solar PV Modules">Solar PV Modules</option>
                   <option value="Solar Grid-tie Inverters">Solar Grid-tie Inverters</option>
                   <option value="Hybrid Inverters">Hybrid Inverters</option>
-                  <option value="Solar Water Pumps">Solar Water Pumps</option>
                   <option value="Battery Storage">Battery Storage</option>
                 </select>
               </div>

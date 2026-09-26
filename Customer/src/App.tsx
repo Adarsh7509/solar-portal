@@ -36,7 +36,7 @@ const SLIDES = [
     title: "TNS Roof: Solar Energy for Homes",
     description: "Save up to 90% on electricity bills with government benefits and high-quality solar panel setups.",
     image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1600&auto=format&fit=crop&q=80",
-    badge: "PM Surya Ghar Approved",
+    badge: "PM Surya Ghar Scheme",
     tagline: "Reduce Bills to Zero"
   },
   {
@@ -62,13 +62,6 @@ const SOLUTIONS = [
     desc: 'Use empty rooftop space on warehouses and factories to save massive amounts of money.',
     features: ['Special tax saving benefits', 'No-upfront-cost options available', 'Strong, high-wind resistant design'],
     image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&auto=format&fit=crop&q=60'
-  },
-  {
-    id: 'pumps',
-    title: 'Solar Water Pumps',
-    desc: 'Water pump systems for farms and rural areas that run completely on solar power without grid electricity.',
-    features: ['Works without grid power connection', 'Long-lasting and highly reliable pumps', 'Eligible for government support'],
-    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&auto=format&fit=crop&q=60'
   },
   {
     id: 'large',
@@ -164,18 +157,18 @@ function App() {
 
   // Dynamic SEO metadata per route
   useEffect(() => {
-    let title = "TNS Clean Energy | #1 Solar Panel Installation & Rooftop Solar Company in Jaipur, Rajasthan";
-    let metaDescription = "TNS Clean Energy is Rajasthan's leading rooftop solar panel installer. Get up to ₹78,000 Govt PM Surya Ghar subsidy, net-metering & 25-year panel warranty. Call +91 95093 80380 for a free site survey in Jaipur!";
+    let title = "TNS Solar Energy | #1 Solar Panel Installation & Rooftop Solar Company in Jaipur, Rajasthan";
+    let metaDescription = "TNS Solar Energy is Rajasthan's leading rooftop solar panel installer. Get up to ₹78,000 Govt PM Surya Ghar subsidy, net-metering & 25-year panel warranty. Call +91 95093 80380 for an on-call consultation in Jaipur!";
 
     if (location.pathname === '/about') {
-      title = "About TNS Clean Energy | Premier Solar EPC Company in Rajasthan";
-      metaDescription = "Learn about TNS Clean Energy, Rajasthan's trusted solar installation provider guided by visionary engineering leadership, delivering high-performance rooftop solar arrays.";
+      title = "About TNS Solar Energy | Premier Solar EPC Company in Rajasthan";
+      metaDescription = "Learn about TNS Solar Energy, Rajasthan's trusted solar installation provider guided by visionary engineering leadership, delivering high-performance rooftop solar arrays.";
     } else if (location.pathname === '/projects') {
-      title = "Verified Solar Projects Portfolio | Commercial & Residential Solar Jaipur";
+      title = "Our Installed Solar Projects | Commercial & Residential Solar Jaipur";
       metaDescription = "Browse 29+ verified rooftop solar installations across Jaipur & Rajasthan. High-efficiency commercial solar plants and residential PM Surya Ghar solar systems.";
     } else if (location.pathname === '/request-survey') {
-      title = "Request Free Solar Site Survey & Price Quote | TNS Clean Energy";
-      metaDescription = "Book a free on-site solar survey & cost estimate in Jaipur, Rajasthan. Claim up to ₹78,000 PM Surya Ghar government subsidy with hassle-free net-metering setup.";
+      title = "Book Free On-Call Solar Consultation | TNS Solar Energy";
+      metaDescription = "Book an on-call solar consultation & cost estimate in Jaipur, Rajasthan. Claim up to ₹78,000 PM Surya Ghar government subsidy with hassle-free net-metering setup.";
     }
 
     document.title = title;
@@ -334,12 +327,12 @@ function App() {
                     TNS <span className="text-yellow-500 font-sans font-light">SYSTEMS</span>
                   </span>
                   <span className="text-[7px] text-slate-500 font-bold tracking-[0.25em] uppercase -mt-1 leading-none">
-                    Clean Energy
+                    Solar Energy
                   </span>
                 </div>
               </div>
               <div className="space-y-1">
-                <h4 className="font-extrabold text-white text-xs">TNS Clean Energy Ltd</h4>
+                <h4 className="font-extrabold text-white text-xs">TNS Solar Energy Ltd</h4>
                 <p className="text-[10px] text-slate-400 italic">Simplifying Solar</p>
               </div>
             </div>
@@ -569,7 +562,7 @@ function App() {
                  </div>
               </div>
               <ul className="space-y-2.5 text-sm text-slate-400 pl-13">
-                <li><Link to="/request-survey" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-500 transition-colors flex items-center gap-1">Request Callback / Site Survey <ChevronRight className="h-3 w-3" /></Link></li>
+                <li><Link to="/request-survey" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-500 transition-colors flex items-center gap-1">Request Callback / On-Call Consultation <ChevronRight className="h-3 w-3" /></Link></li>
                 <li><Link to="/request-survey" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-500 transition-colors flex items-center gap-1">Regional Offices <ChevronRight className="h-3 w-3" /></Link></li>
                 <li><Link to="/request-survey" onClick={() => setIsMenuOpen(false)} className="hover:text-yellow-500 transition-colors flex items-center gap-1">Registered Vendor Network <ChevronRight className="h-3 w-3" /></Link></li>
               </ul>
@@ -707,7 +700,7 @@ function Home({ handleNavClick }: HomeProps) {
               </span>
               <h3 className="text-xl font-black text-white">Is your roof ready for solar power?</h3>
               <p className="text-slate-400 text-xs leading-relaxed">
-                Take the first step toward clean, zero-bill energy. Book a comprehensive physical site evaluation and shadow analysis with our expert engineering team today.
+                Take the first step toward clean, zero-bill energy. Book a comprehensive on-call consultation and rooftop analysis with our expert engineering team today.
               </p>
               <ul className="space-y-3.5 text-xs text-slate-300">
                 <li className="flex items-center gap-2">
@@ -727,7 +720,7 @@ function Home({ handleNavClick }: HomeProps) {
                 to="/request-survey"
                 className="w-full py-3 bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-slate-950 font-extrabold text-xs rounded-xl flex items-center justify-center gap-1.5 transition shadow-lg shadow-yellow-500/10 cursor-pointer text-center"
               >
-                <span>Request Free Survey</span>
+                <span>Book On-Call Consultation</span>
                 <ChevronRight className="h-4 w-4" />
               </Link>
             </div>
@@ -939,7 +932,7 @@ function RequestSurveyPage() {
     <section className="py-16 px-6 max-w-7xl w-full mx-auto space-y-12">
       <div className="text-center max-w-3xl mx-auto space-y-4 mb-8">
         <span className="text-xs font-bold text-yellow-500 uppercase tracking-widest block">
-          TNS CLEAN ENERGY
+          TNS SOLAR ENERGY
         </span>
         <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight">
           CONTACT US & ENQUIRIES
@@ -1046,7 +1039,7 @@ function LeadershipSection() {
       role: "Owner & Founder",
       title: "Owner / Chairman",
       image: "/team/rajendra_tilkar.jpg",
-      description: "Founder & Owner guiding TNS Clean Energy's strategic vision, corporate legacy, and commitment to green energy innovation.",
+      description: "Founder & Owner guiding TNS Solar Energy's strategic vision, corporate legacy, and commitment to green energy innovation.",
       phone: "+91 95093 80380",
       email: "himanshutilkar@gmail.com"
     },
@@ -1085,7 +1078,7 @@ function LeadershipSection() {
           <div className="w-16 h-0.5 mx-auto bg-gradient-to-r from-transparent via-yellow-500/60 to-transparent rounded-full" />
 
           <p className="text-slate-400 text-xs sm:text-sm font-normal max-w-lg mx-auto leading-relaxed">
-            Meet the visionary leadership team behind TNS Clean Energy, dedicated to powering homes and businesses with clean, reliable solar energy.
+            Meet the visionary leadership team behind TNS Solar Energy, dedicated to powering homes and businesses with clean, reliable solar energy.
           </p>
         </div>
       </ScrollReveal>
@@ -1189,7 +1182,7 @@ function AboutPage() {
       {/* About Hero */}
       <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
         <span className="text-xs font-bold text-yellow-500 uppercase tracking-widest block">
-          TNS Clean Energy
+          TNS Solar Energy
         </span>
         <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight">
           WHO WE ARE
@@ -1281,7 +1274,7 @@ function AboutPage() {
             <div className="relative">
               <div className="absolute -left-[31px] top-1.5 h-4 w-4 rounded-full bg-yellow-500 border-4 border-slate-950" />
               <h3 className="text-lg font-bold text-white">2018 - Company Founded</h3>
-              <p className="text-slate-400 text-xs mt-1">We started TNS Clean Energy with just 5 engineers and a dream to popularize solar roofs.</p>
+              <p className="text-slate-400 text-xs mt-1">We started TNS Solar Energy with just 5 engineers and a dream to popularize solar roofs.</p>
             </div>
           </ScrollReveal>
           <ScrollReveal direction="left" delay={100}>
@@ -1302,7 +1295,7 @@ function AboutPage() {
             <div className="relative">
               <div className="absolute -left-[31px] top-1.5 h-4 w-4 rounded-full bg-yellow-500 border-4 border-slate-950" />
               <h3 className="text-lg font-bold text-white">2025 - Government Partner status</h3>
-              <p className="text-slate-400 text-xs mt-1">Officially approved to install solar under PM Surya Ghar government subsidy schemes.</p>
+              <p className="text-slate-400 text-xs mt-1">Official installer for solar under PM Surya Ghar government subsidy schemes.</p>
             </div>
           </ScrollReveal>
         </div>
@@ -1363,7 +1356,7 @@ function ReviewsSection() {
         name: "Priya Sharma",
         city: "Jaipur",
         rating: 5,
-        comment: "Very happy with the solar water pump we installed on our farm. Extremely reliable and works without any grid power.",
+        comment: "Very happy with the 5kW rooftop solar setup for our home. Extremely reliable and zero electricity bills!",
         date: "28 Apr 2026"
       },
       {
@@ -1395,7 +1388,7 @@ function ReviewsSection() {
         name: "Divya Patel",
         city: "Jaipur",
         rating: 4,
-        comment: "Highly recommend TNS Clean Energy. The savings are real and the system is very easy to monitor.",
+        comment: "Highly recommend TNS Solar Energy. The savings are real and the system is very easy to monitor.",
         date: "05 Mar 2026"
       },
       {
@@ -1430,7 +1423,7 @@ function ReviewsSection() {
               What Our Customers Say
             </h2>
             <p className="text-slate-400">
-              Real feedback from homeowners and businesses who switched to TNS Clean Energy.
+              Real feedback from homeowners and businesses who switched to TNS Solar Energy.
             </p>
           </div>
           <Link 
@@ -1566,7 +1559,7 @@ function FAQSection() {
   const faqs = [
     {
       q: "How much government subsidy is available for home solar?",
-      a: "Under the PM Surya Ghar National Portal, residential rooftop solar systems receive ₹30,000 for 1 kW, ₹60,000 for 2 kW, and a maximum of ₹78,000 for 3 kW or higher capacities. TNS Clean Energy handles the entire registration and documentation to ensure the subsidy is credited directly to your bank account."
+      a: "Under the PM Surya Ghar National Portal, residential rooftop solar systems receive ₹30,000 for 1 kW, ₹60,000 for 2 kW, and a maximum of ₹78,000 for 3 kW or higher capacities. TNS Solar Energy handles the entire registration and documentation to ensure the subsidy is credited directly to your bank account."
     },
     {
       q: "What is Net-Metering and how does it benefit me?",

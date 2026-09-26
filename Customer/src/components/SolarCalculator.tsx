@@ -325,7 +325,7 @@ export function SolarCalculator() {
               to="/request-survey"
               className="w-full sm:w-auto px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-extrabold text-xs rounded-xl flex items-center justify-center gap-1.5 transition shadow-lg shadow-yellow-500/10 cursor-pointer"
             >
-              <span>Book Site Survey</span>
+              <span>Book On-Call Consultation</span>
               <ChevronRight className="h-4 w-4" />
             </Link>
           </div>

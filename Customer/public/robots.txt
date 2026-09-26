@@ -1,4 +1,4 @@
-# User-agent configuration for TNS Clean Energy
+# User-agent configuration for TNS Solar Energy
 User-agent: *
 Allow: /
 

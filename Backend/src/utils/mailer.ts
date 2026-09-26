@@ -126,7 +126,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
     const cleanComment = payload.message?.replace(/\[FEEDBACK SUBMISSION\][\s\S]*?Comments:\s*/i, '').trim() || 'No additional comments provided.';
 
     subjectAdmin = `Customer Feedback Received - ${payload.name} (${ratingScore}/5 Stars)`;
-    subjectCustomer = `Thank You for Your Feedback - TNS Clean Energy Ltd`;
+    subjectCustomer = `Thank You for Your Feedback - TNS Solar Energy Ltd`;
 
     adminHtmlContent = `
       <!DOCTYPE html>
@@ -135,13 +135,13 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
         <body>
           <div class="email-card">
             <div class="brand-header">
-              <div class="brand-name">TNS Clean Energy Ltd</div>
+              <div class="brand-name">TNS Solar Energy Ltd</div>
               <div class="brand-tagline">Customer Experience Review</div>
             </div>
             <div class="content-body">
               <div class="section-title">New Customer Feedback Received</div>
               <p style="font-size: 13px; color: #475569; margin-bottom: 20px;">
-                A customer has submitted feedback regarding their experience with TNS Clean Energy. Details below:
+                A customer has submitted feedback regarding their experience with TNS Solar Energy. Details below:
               </p>
               <table class="info-table">
                 <tr><td class="label">Customer Name</td><td class="value">${payload.name}</td></tr>
@@ -155,7 +155,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
               <div class="quote-box">"${cleanComment}"</div>
             </div>
             <div class="footer">
-              TNS Clean Energy Ltd &bull; Automated Feedback System
+              TNS Solar Energy Ltd &bull; Automated Feedback System
             </div>
           </div>
         </body>
@@ -169,7 +169,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
         <body>
           <div class="email-card">
             <div class="brand-header">
-              <div class="brand-name">TNS Clean Energy Ltd</div>
+              <div class="brand-name">TNS Solar Energy Ltd</div>
               <div class="brand-tagline">Simplifying Solar</div>
             </div>
             <div class="content-body">
@@ -190,11 +190,11 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
               </p>
               <p style="font-size: 13px; color: #0f172a; font-weight: bold; margin-top: 24px;">
                 Warm regards,<br>
-                <span style="font-weight: normal; color: #64748b;">Customer Relations Team &bull; TNS Clean Energy Ltd</span>
+                <span style="font-weight: normal; color: #64748b;">Customer Relations Team &bull; TNS Solar Energy Ltd</span>
               </p>
             </div>
             <div class="footer">
-              TNS Clean Energy Ltd &bull; Vaishali Nagar, Jaipur, Rajasthan 302021
+              TNS Solar Energy Ltd &bull; Vaishali Nagar, Jaipur, Rajasthan 302021
             </div>
           </div>
         </body>
@@ -208,7 +208,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
     const cleanIssue = payload.message?.replace(/\[TICKET SUBMITTED[\s\S]*?Issue Description:\s*/i, '').trim() || payload.message || 'Details provided in ticket form.';
 
     subjectAdmin = `Support Ticket Alert: ${ticketCategory} - ${payload.name} (${payload.city || 'Jaipur'})`;
-    subjectCustomer = `Service Ticket Confirmation - TNS Clean Energy Ltd`;
+    subjectCustomer = `Service Ticket Confirmation - TNS Solar Energy Ltd`;
 
     adminHtmlContent = `
       <!DOCTYPE html>
@@ -217,7 +217,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
         <body>
           <div class="email-card">
             <div class="brand-header">
-              <div class="brand-name">TNS Clean Energy Ltd</div>
+              <div class="brand-name">TNS Solar Energy Ltd</div>
               <div class="brand-tagline">Technical Support & Service Operations</div>
             </div>
             <div class="content-body">
@@ -246,7 +246,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
               <div class="quote-box">"${cleanIssue}"</div>
             </div>
             <div class="footer">
-              TNS Clean Energy Ltd &bull; Field Service Operations Division
+              TNS Solar Energy Ltd &bull; Field Service Operations Division
             </div>
           </div>
         </body>
@@ -260,7 +260,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
         <body>
           <div class="email-card">
             <div class="brand-header">
-              <div class="brand-name">TNS Clean Energy Ltd</div>
+              <div class="brand-name">TNS Solar Energy Ltd</div>
               <div class="brand-tagline">Technical Support Desk</div>
             </div>
             <div class="content-body">
@@ -281,11 +281,11 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
               </p>
               <p style="font-size: 13px; color: #0f172a; font-weight: bold; margin-top: 24px;">
                 Best regards,<br>
-                <span style="font-weight: normal; color: #64748b;">Solar Engineering & Service Team &bull; TNS Clean Energy Ltd</span>
+                <span style="font-weight: normal; color: #64748b;">Solar Engineering & Service Team &bull; TNS Solar Energy Ltd</span>
               </p>
             </div>
             <div class="footer">
-              TNS Clean Energy Ltd &bull; Phone: +91 95093 80380
+              TNS Solar Energy Ltd &bull; Phone: +91 95093 80380
             </div>
           </div>
         </body>
@@ -299,7 +299,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
     const cleanMsg = payload.message?.replace(/\[GENERAL ENQUIRY\][\s\S]*?Requirements:\s*/i, '').trim() || payload.message || 'Interested in rooftop solar panel feasibility check.';
 
     subjectAdmin = `New Solar Lead: ${payload.name} (${payload.city || 'Jaipur'})`;
-    subjectCustomer = `We Have Received Your Solar Enquiry - TNS Clean Energy Ltd`;
+    subjectCustomer = `We Have Received Your Solar Enquiry - TNS Solar Energy Ltd`;
 
     adminHtmlContent = `
       <!DOCTYPE html>
@@ -308,7 +308,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
         <body>
           <div class="email-card">
             <div class="brand-header">
-              <div class="brand-name">TNS Clean Energy Ltd</div>
+              <div class="brand-name">TNS Solar Energy Ltd</div>
               <div class="brand-tagline">New Lead & Site Survey Enquiry</div>
             </div>
             <div class="content-body">
@@ -329,7 +329,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
               <div class="quote-box">"${cleanMsg}"</div>
             </div>
             <div class="footer">
-              TNS Clean Energy Ltd &bull; Automated Solar Lead Engine
+              TNS Solar Energy Ltd &bull; Automated Solar Lead Engine
             </div>
           </div>
         </body>
@@ -343,7 +343,7 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
         <body>
           <div class="email-card">
             <div class="brand-header">
-              <div class="brand-name">TNS Clean Energy Ltd</div>
+              <div class="brand-name">TNS Solar Energy Ltd</div>
               <div class="brand-tagline">Simplifying Solar</div>
             </div>
             <div class="content-body">
@@ -352,18 +352,18 @@ export async function sendQueryEmail(payload: QueryMailPayload): Promise<boolean
                 Dear <strong>${payload.name}</strong>,
               </p>
               <p style="font-size: 13px; line-height: 1.6; color: #334155;">
-                Thank you for reaching out to TNS Clean Energy Ltd. We have successfully received your inquiry regarding rooftop solar solutions.
+                Thank you for reaching out to TNS Solar Energy Ltd. We have successfully received your inquiry regarding rooftop solar solutions.
               </p>
               <p style="font-size: 13px; line-height: 1.6; color: #334155;">
                 Our solar engineering experts will perform a preliminary satellite rooftop check and contact you at <strong>+91 ${payload.phone}</strong> shortly to discuss your custom setup and government PM Surya Ghar subsidy options.
               </p>
               <p style="font-size: 13px; color: #0f172a; font-weight: bold; margin-top: 24px;">
                 Warm regards,<br>
-                <span style="font-weight: normal; color: #64748b;">Solar Engineering Advisory Team &bull; TNS Clean Energy Ltd</span>
+                <span style="font-weight: normal; color: #64748b;">Solar Engineering Advisory Team &bull; TNS Solar Energy Ltd</span>
               </p>
             </div>
             <div class="footer">
-              TNS Clean Energy Ltd &bull; Vaishali Nagar, Jaipur, Rajasthan 302021
+              TNS Solar Energy Ltd &bull; Vaishali Nagar, Jaipur, Rajasthan 302021
             </div>
           </div>
         </body>

@@ -357,7 +357,7 @@ export function OurProjects({ featuredOnly = false }: OurProjectsProps) {
               <span>Real Customer Installations</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
-              {featuredOnly ? 'FEATURED SOLAR PROJECTS' : 'OUR COMPLETE PORTFOLIO'}
+              OUR INSTALLED PROJECTS
             </h2>
             <div className="h-1 w-16 bg-gradient-to-r from-yellow-500 to-amber-400 mx-auto rounded-full" />
             <p className="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
@@ -371,38 +371,12 @@ export function OurProjects({ featuredOnly = false }: OurProjectsProps) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-slate-900/40 p-4 rounded-2xl border border-slate-800/80 backdrop-blur-md">
             
             {/* Filter Tabs */}
-            <div className="flex flex-wrap items-center justify-center gap-2.5 w-full md:w-auto">
+            <div className="flex items-center justify-center gap-2.5 w-full md:w-auto">
               <button
                 onClick={() => setFilter('all')}
-                className={`px-5 py-2.5 text-xs font-extrabold rounded-xl transition duration-300 cursor-pointer ${
-                  filter === 'all'
-                    ? 'bg-yellow-500 text-slate-950 shadow-lg shadow-yellow-500/20'
-                    : 'bg-slate-950 border border-slate-800 text-slate-400 hover:text-white'
-                }`}
+                className="px-5 py-2.5 text-xs font-extrabold rounded-xl transition duration-300 cursor-pointer bg-yellow-500 text-slate-950 shadow-lg shadow-yellow-500/20"
               >
-                <span>All Projects</span>
-              </button>
-
-              <button
-                onClick={() => setFilter('commercial')}
-                className={`px-5 py-2.5 text-xs font-extrabold rounded-xl transition duration-300 cursor-pointer ${
-                  filter === 'commercial'
-                    ? 'bg-yellow-500 text-slate-950 shadow-lg shadow-yellow-500/20'
-                    : 'bg-slate-950 border border-slate-800 text-slate-400 hover:text-white'
-                }`}
-              >
-                <span>Commercial & Industrial</span>
-              </button>
-
-              <button
-                onClick={() => setFilter('residential')}
-                className={`px-5 py-2.5 text-xs font-extrabold rounded-xl transition duration-300 cursor-pointer ${
-                  filter === 'residential'
-                    ? 'bg-yellow-500 text-slate-950 shadow-lg shadow-yellow-500/20'
-                    : 'bg-slate-950 border border-slate-800 text-slate-400 hover:text-white'
-                }`}
-              >
-                <span>Residential Roofs</span>
+                <span>All Installed Projects</span>
               </button>
             </div>
 
@@ -587,7 +561,7 @@ export function OurProjects({ featuredOnly = false }: OurProjectsProps) {
                   onClick={() => setSelectedProject(null)}
                   className="px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-extrabold text-xs rounded-xl shadow-lg shadow-yellow-500/20 transition flex items-center gap-2"
                 >
-                  <span>Request Free Survey</span>
+                  <span>Book On-Call Consultation</span>
                   <ChevronRight className="h-4 w-4" />
                 </Link>
               </div>
