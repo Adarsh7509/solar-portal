@@ -54,7 +54,7 @@ const SOLUTIONS = [
     title: 'Residential Solar Roofs',
     desc: 'Power your home with smart solar setups. Keep your electricity bills near zero.',
     features: ['Get direct government subsidy up to ₹78,000', 'Sell extra power back to the grid', '25-year performance warranty'],
-    image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&auto=format&fit=crop&q=60'
+    image: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=800&auto=format&fit=crop&q=60'
   },
   {
     id: 'commercial',
@@ -766,7 +766,7 @@ function Home({ handleNavClick }: HomeProps) {
             <div
               key={sol.id}
               className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center transition-all duration-500 ${
-                activeTab === sol.id ? 'opacity-100 flex translate-y-0' : 'hidden opacity-0 translate-y-4'
+                activeTab === sol.id ? 'opacity-100 grid translate-y-0' : 'hidden opacity-0 translate-y-4'
               }`}
             >
               <div className="lg:col-span-6 space-y-6">
@@ -792,15 +792,13 @@ function Home({ handleNavClick }: HomeProps) {
                 </ScrollReveal>
               </div>
 
-              <div className="lg:col-span-6 rounded-3xl overflow-hidden border border-slate-900 shadow-2xl relative h-[380px]">
-                <ScrollReveal direction="right" delay={300}>
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent z-10" />
-                  <img
-                    src={sol.image}
-                    alt={sol.title}
-                    className="w-full h-full object-cover"
-                  />
-                </ScrollReveal>
+              <div className="lg:col-span-6 w-full rounded-3xl overflow-hidden border border-slate-900 shadow-2xl relative h-56 sm:h-72 lg:h-[360px]">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent z-10 pointer-events-none" />
+                <img
+                  src={sol.image}
+                  alt={sol.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           ))}
