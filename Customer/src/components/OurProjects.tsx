@@ -356,7 +356,7 @@ export function OurProjects({ featuredOnly = false }: OurProjectsProps) {
               <Zap className="h-3.5 w-3.5 text-yellow-400" />
               <span>Real Customer Installations</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+            <h2 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight">
               OUR INSTALLED PROJECTS
             </h2>
             <div className="h-1 w-16 bg-gradient-to-r from-yellow-500 to-amber-400 mx-auto rounded-full" />
