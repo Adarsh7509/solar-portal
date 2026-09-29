@@ -57,13 +57,6 @@ const SOLUTIONS = [
     image: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=800&auto=format&fit=crop&q=60'
   },
   {
-    id: 'commercial',
-    title: 'Commercial & Industrial Solar',
-    desc: 'Use empty rooftop space on warehouses and factories to save massive amounts of money.',
-    features: ['Special tax saving benefits', 'No-upfront-cost options available', 'Strong, high-wind resistant design'],
-    image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&auto=format&fit=crop&q=60'
-  },
-  {
     id: 'large',
     title: 'Large Solar Projects',
     desc: 'Complete setup and care for solar parks, from land planning to grid connection.',
@@ -749,7 +742,7 @@ function Home({ handleNavClick }: HomeProps) {
                 <button
                   key={sol.id}
                   onClick={() => setActiveTab(sol.id)}
-                  className={`px-5 py-3 text-sm font-bold rounded-xl border transition-all duration-300 cursor-pointer ${
+                  className={`px-4 py-2.5 text-xs font-extrabold rounded-xl border transition-all duration-300 cursor-pointer ${
                     activeTab === sol.id
                       ? 'bg-yellow-500 text-slate-950 border-yellow-500 shadow-lg shadow-yellow-500/10'
                       : 'bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-900 hover:text-white'
