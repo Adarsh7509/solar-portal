@@ -67,9 +67,9 @@ const SOLUTIONS = [
 
 function TNSLogo({ className = "" }: { className?: string }) {
   return (
-    <div className={`flex flex-col items-start leading-none ${className}`}>
+    <div className={`flex flex-col items-start justify-center leading-none ${className}`}>
       <div className="flex items-baseline gap-0.5">
-        <span className="font-black text-2xl tracking-tighter bg-gradient-to-r from-yellow-500 via-yellow-500 to-cyan-400 bg-clip-text text-transparent uppercase font-sans select-none">
+        <span className="inline-block pr-2 font-black text-2xl tracking-tight bg-gradient-to-r from-yellow-500 via-yellow-500 to-cyan-400 bg-clip-text text-transparent uppercase font-sans select-none">
           TNS
         </span>
         <span className="text-[9px] font-black text-cyan-400 self-start mt-0.5 ml-0.5 select-none">TM</span>
@@ -207,11 +207,13 @@ function App() {
               }
             }}
           >
-            <img 
-              src={tnsLogoImg} 
-              alt="TNS Logo" 
-              className="h-10 w-10 rounded-xl object-cover shadow-lg shadow-yellow-500/10 border border-slate-900/60 transition-transform duration-300 group-hover:scale-105"
-            />
+            <div className="h-11 w-11 rounded-xl bg-white p-1 flex items-center justify-center border border-slate-700/60 shadow-lg shadow-yellow-500/10 overflow-hidden transition-transform duration-300 group-hover:scale-105 shrink-0">
+              <img 
+                src={tnsLogoImg} 
+                alt="TNS Logo" 
+                className="w-full h-full object-contain object-center"
+              />
+            </div>
             <TNSLogo />
           </Link>
 
@@ -306,11 +308,13 @@ function App() {
             {/* Column 1: Brand info */}
             <div className="space-y-4">
               <div className="flex items-center gap-3 group">
-                <img 
-                  src={tnsLogoImg} 
-                  alt="TNS Solar Logo" 
-                  className="h-10 w-10 rounded-xl object-cover border border-slate-800/80 shadow-lg shadow-yellow-500/10 group-hover:scale-105 transition-transform duration-300"
-                />
+                <div className="h-11 w-11 rounded-xl bg-white p-1 flex items-center justify-center border border-slate-700/60 shadow-lg shadow-yellow-500/10 overflow-hidden transition-transform duration-300 group-hover:scale-105 shrink-0">
+                  <img 
+                    src={tnsLogoImg} 
+                    alt="TNS Solar Logo" 
+                    className="w-full h-full object-contain object-center"
+                  />
+                </div>
                 <TNSLogo />
               </div>
               <div className="space-y-1">
@@ -402,11 +406,13 @@ function App() {
               }
             }}
           >
-            <img 
-              src={tnsLogoImg} 
-              alt="TNS Logo" 
-              className="h-10 w-10 rounded-xl object-cover border border-slate-900/60 transition-transform duration-300 group-hover:scale-105"
-            />
+            <div className="h-11 w-11 rounded-xl bg-white p-1 flex items-center justify-center border border-slate-700/60 shadow-lg shadow-yellow-500/10 overflow-hidden transition-transform duration-300 group-hover:scale-105 shrink-0">
+              <img 
+                src={tnsLogoImg} 
+                alt="TNS Logo" 
+                className="w-full h-full object-contain object-center"
+              />
+            </div>
             <TNSLogo />
           </Link>
 
