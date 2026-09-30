@@ -207,11 +207,11 @@ function App() {
               }
             }}
           >
-            <div className="h-11 w-11 rounded-xl bg-white p-1 flex items-center justify-center border border-slate-700/60 shadow-lg shadow-yellow-500/10 overflow-hidden transition-transform duration-300 group-hover:scale-105 shrink-0">
+            <div className="h-11 w-11 rounded-xl bg-white flex items-center justify-center border border-slate-700/60 shadow-lg shadow-yellow-500/10 overflow-hidden transition-transform duration-300 group-hover:scale-105 shrink-0">
               <img 
                 src={tnsLogoImg} 
                 alt="TNS Logo" 
-                className="w-full h-full object-contain object-center"
+                className="w-full h-full object-cover object-center scale-[1.3]"
               />
             </div>
             <TNSLogo />
@@ -308,11 +308,11 @@ function App() {
             {/* Column 1: Brand info */}
             <div className="space-y-4">
               <div className="flex items-center gap-3 group">
-                <div className="h-11 w-11 rounded-xl bg-white p-1 flex items-center justify-center border border-slate-700/60 shadow-lg shadow-yellow-500/10 overflow-hidden transition-transform duration-300 group-hover:scale-105 shrink-0">
+                <div className="h-11 w-11 rounded-xl bg-white flex items-center justify-center border border-slate-700/60 shadow-lg shadow-yellow-500/10 overflow-hidden transition-transform duration-300 group-hover:scale-105 shrink-0">
                   <img 
                     src={tnsLogoImg} 
                     alt="TNS Solar Logo" 
-                    className="w-full h-full object-contain object-center"
+                    className="w-full h-full object-cover object-center scale-[1.3]"
                   />
                 </div>
                 <TNSLogo />
@@ -406,11 +406,11 @@ function App() {
               }
             }}
           >
-            <div className="h-11 w-11 rounded-xl bg-white p-1 flex items-center justify-center border border-slate-700/60 shadow-lg shadow-yellow-500/10 overflow-hidden transition-transform duration-300 group-hover:scale-105 shrink-0">
+            <div className="h-11 w-11 rounded-xl bg-white flex items-center justify-center border border-slate-700/60 shadow-lg shadow-yellow-500/10 overflow-hidden transition-transform duration-300 group-hover:scale-105 shrink-0">
               <img 
                 src={tnsLogoImg} 
                 alt="TNS Logo" 
-                className="w-full h-full object-contain object-center"
+                className="w-full h-full object-cover object-center scale-[1.3]"
               />
             </div>
             <TNSLogo />
@@ -613,16 +613,16 @@ function Home({ handleNavClick }: HomeProps) {
                 <p className="text-slate-300 text-base md:text-lg leading-relaxed max-w-2xl">
                   {slide.description}
                 </p>
-                <div className="flex flex-wrap gap-4 pt-2">
+                <div className="flex flex-wrap gap-3 pt-2">
                   <Link
                     to="/request-survey"
-                    className="px-6 py-3 font-bold rounded-xl transition duration-200 shadow-lg shadow-yellow-500/20 glitter-border-btn-yellow"
+                    className="px-4.5 py-2.5 text-xs font-bold rounded-xl transition duration-200 shadow-md shadow-yellow-500/20 glitter-border-btn-yellow"
                   >
                     Request Free Survey
                   </Link>
                   <button
                     onClick={() => handleNavClick('#solutions')}
-                    className="px-6 py-3 font-bold rounded-xl transition duration-200 cursor-pointer glitter-border-btn"
+                    className="px-4.5 py-2.5 text-xs font-bold rounded-xl transition duration-200 cursor-pointer glitter-border-btn"
                   >
                     Explore Solutions
                   </button>
