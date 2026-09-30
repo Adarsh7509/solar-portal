@@ -305,24 +305,13 @@ function App() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-[11px] text-slate-400">
             {/* Column 1: Brand info */}
             <div className="space-y-4">
-              <div className="flex items-center gap-2 group">
-                <div className="relative flex items-center justify-center h-9 w-9 rounded-xl bg-slate-900 border border-slate-800 shadow-lg group-hover:border-yellow-500/30 transition-all duration-300">
-                  {/* Glowing background shape */}
-                  <div className="absolute inset-0.5 rounded-lg bg-gradient-to-br from-yellow-500 to-yellow-600 opacity-20 blur-xs group-hover:opacity-40 transition-all duration-300" />
-                  
-                  {/* Lightning bolt logo */}
-                  <svg className="h-5 w-5 text-yellow-500 relative z-10 drop-shadow-[0_0_8px_rgba(234,179,8,0.5)] group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-sm font-black text-white tracking-wider font-serif">
-                    TNS <span className="text-yellow-500 font-sans font-light">SYSTEMS</span>
-                  </span>
-                  <span className="text-[7px] text-slate-500 font-bold tracking-[0.25em] uppercase -mt-1 leading-none">
-                    Solar Energy
-                  </span>
-                </div>
+              <div className="flex items-center gap-3 group">
+                <img 
+                  src={tnsLogoImg} 
+                  alt="TNS Solar Logo" 
+                  className="h-10 w-10 rounded-xl object-cover border border-slate-800/80 shadow-lg shadow-yellow-500/10 group-hover:scale-105 transition-transform duration-300"
+                />
+                <TNSLogo />
               </div>
               <div className="space-y-1">
                 <h4 className="font-extrabold text-white text-xs">TNS Solar Energy Ltd</h4>
@@ -1022,9 +1011,20 @@ function ProjectsPage() {
   return <OurProjects featuredOnly={false} />;
 }
 
+interface LeaderItem {
+  name: string;
+  role: string;
+  title: string;
+  image: string;
+  description: string;
+  phone?: string;
+  email?: string;
+  badge?: string;
+}
+
 // Owner, CEO & Leadership Section Component
 function LeadershipSection() {
-  const leaders = [
+  const leaders: LeaderItem[] = [
     {
       name: "Rajendra Tilkar",
       role: "Owner & Founder",
@@ -1044,12 +1044,13 @@ function LeadershipSection() {
       email: "himanshutilkar@gmail.com"
     },
     {
-      name: "Executive Director",
+      name: "Shwetlana Tilkar",
       role: "Director",
-      title: "Board Member / Director",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&auto=format&fit=crop&q=80",
-      description: "Directing technical quality control, project execution, and grid synchronization standard operating procedures.",
-      badge: "Photo Update Pending"
+      title: "Executive Director",
+      image: "/team/shwetlana_tilkar.jpg",
+      description: "Directing strategic operations, project quality management, and client relationships.",
+      phone: "+91 95093 80380",
+      email: "himanshutilkar@gmail.com"
     }
   ];
 
