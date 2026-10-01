@@ -158,13 +158,13 @@ body {
   color: #1e293b !important;
 }
 
-.light button:not(.bg-yellow-500):not(.bg-white):not(.menu-header-btn) {
+.light button:not(.bg-yellow-500):not(.bg-white):not(.menu-header-btn):not(.bg-transparent):not(.btn-specs) {
   background-color: #f1f5f9 !important;
   border-color: #e2e8f0 !important;
   color: #1e293b !important;
 }
 
-.light button:not(.bg-yellow-500):not(.bg-white):not(.menu-header-btn):hover {
+.light button:not(.bg-yellow-500):not(.bg-white):not(.menu-header-btn):not(.bg-transparent):not(.btn-specs):hover {
   background-color: #e2e8f0 !important;
 }
 

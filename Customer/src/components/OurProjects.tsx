@@ -453,10 +453,10 @@ export function OurProjects({ featuredOnly = false }: OurProjectsProps) {
                   </div>
 
                   {/* Card Footer */}
-                  <div className="pt-4 border-t border-slate-900 flex items-center justify-between">
+                  <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
                     <button
                       onClick={() => setSelectedProject(project)}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-yellow-400 hover:text-yellow-300 cursor-pointer bg-transparent border-none p-0"
+                      className="btn-specs inline-flex items-center gap-1.5 text-xs font-extrabold text-yellow-400 hover:text-yellow-300 transition-colors cursor-pointer bg-transparent border-0 p-0"
                     >
                       <span>Project Specs</span>
                       <ArrowRight className="h-3.5 w-3.5" />
