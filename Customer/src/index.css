@@ -91,9 +91,30 @@ body {
 .light .bg-slate-900,
 .light .bg-slate-950,
 .light .bg-slate-950\/80,
+.light .bg-slate-950\/90,
+.light .bg-slate-900\/60,
 .light .bg-slate-900\/50 {
-  background-color: #f8fafc !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
   border-color: #e2e8f0 !important;
+}
+
+/* Card gradients override in light mode (excluding image overlays) */
+.light .bg-gradient-to-b:not(.inset-0) {
+  background-image: none !important;
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
+}
+
+.light .bg-gradient-to-b:not(.inset-0) h3,
+.light .bg-gradient-to-b:not(.inset-0) .text-white {
+  color: #0f172a !important;
+}
+
+.light .bg-gradient-to-b:not(.inset-0) p,
+.light .bg-gradient-to-b:not(.inset-0) .text-slate-400 {
+  color: #475569 !important;
 }
 
 /* Image hover overlay must stay translucent dark background so photo & badge remain visible */

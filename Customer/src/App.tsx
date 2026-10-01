@@ -150,7 +150,7 @@ function App() {
 
   // Dynamic SEO metadata per route
   useEffect(() => {
-    let title = "TNS Solar Energy | #1 Solar Panel Installation & Rooftop Solar Company in Jaipur, Rajasthan";
+    let title = "TNS Solar Energy | Solar Panel Installation & Rooftop Solar Company in Jaipur";
     let metaDescription = "TNS Solar Energy is Rajasthan's leading rooftop solar panel installer. Get up to ₹78,000 Govt PM Surya Ghar subsidy, net-metering & 25-year panel warranty. Call +91 95093 80380 for an on-call consultation in Jaipur!";
 
     if (location.pathname === '/about') {
@@ -320,6 +320,16 @@ function App() {
               <div className="space-y-1">
                 <h4 className="font-extrabold text-white text-xs">TNS Solar Energy Ltd</h4>
                 <p className="text-[10px] text-slate-400 italic">Simplifying Solar</p>
+              </div>
+              <div className="pt-2 space-y-2 text-[10px] text-slate-400 border-t border-slate-900">
+                <div>
+                  <span className="font-bold text-yellow-500 block text-[10px] uppercase">Corporate Office (Jaipur):</span>
+                  <p className="leading-snug text-slate-300">115, Radha Rani Vihar, Keshyawala, Near Muhana Mandi Rd, Mansarovar, Jaipur 302029</p>
+                </div>
+                <div>
+                  <span className="font-bold text-cyan-400 block text-[10px] uppercase">Head Office (Sawai Madhopur):</span>
+                  <p className="leading-snug text-slate-300">05, Vikas Farm House, Ambedkar Colony, Kherda, Sawai Madhopur 322001</p>
+                </div>
               </div>
             </div>
 
@@ -910,6 +920,8 @@ function Home({ handleNavClick }: HomeProps) {
 
 // Request Survey page component (Task 3)
 function RequestSurveyPage() {
+  const [activeMapTab, setActiveMapTab] = useState<'jaipur' | 'sawai'>('jaipur');
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
@@ -929,60 +941,76 @@ function RequestSurveyPage() {
       </div>
 
       {/* Contact Cards Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Card 1: Main Office */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Card 1: Corporate Office (Jaipur) */}
         <div className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:border-yellow-500/30 hover:-translate-y-1">
-          {/* Accent Line */}
-          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-          <div className="flex items-center gap-3.5 mb-4 mt-2">
-            <div className="p-3 bg-yellow-500/10 rounded-2xl text-yellow-500">
+          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent" />
+          <div className="flex items-center gap-3 mb-4 mt-2">
+            <div className="p-3 bg-yellow-500/10 rounded-2xl text-yellow-500 shrink-0">
               <MapPin className="h-5 w-5" />
             </div>
-            <h3 className="font-extrabold text-white text-base tracking-wide">Main Office</h3>
+            <h3 className="font-extrabold text-white text-sm tracking-wide">Corporate Office</h3>
           </div>
-          <div className="space-y-2">
-            <h4 className="text-xs font-black text-yellow-500">Vaishali Nagar, Jaipur</h4>
+          <div className="space-y-1">
+            <h4 className="text-xs font-black text-yellow-500">Mansarovar, Jaipur</h4>
             <p className="text-slate-400 text-[11px] leading-relaxed">
-              49/4, Bajari Mandi Road, Vaishali Nagar, Jaipur, Rajasthan 302034
+              115, Radha Rani Vihar, Keshyawala, Near Muhana Mandi Road, Mansarovar, Jaipur, RJ 302029
             </p>
           </div>
         </div>
 
-        {/* Card 2: Make a Call */}
+        {/* Card 2: Head Office (Sawai Madhopur) */}
         <div className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:border-yellow-500/30 hover:-translate-y-1">
-          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-          <div className="flex items-center gap-3.5 mb-4 mt-2">
-            <div className="p-3 bg-cyan-500/10 rounded-2xl text-cyan-400">
+          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+          <div className="flex items-center gap-3 mb-4 mt-2">
+            <div className="p-3 bg-cyan-500/10 rounded-2xl text-cyan-400 shrink-0">
+              <Landmark className="h-5 w-5" />
+            </div>
+            <h3 className="font-extrabold text-white text-sm tracking-wide">Head Office</h3>
+          </div>
+          <div className="space-y-1">
+            <h4 className="text-xs font-black text-cyan-400">Sawai Madhopur</h4>
+            <p className="text-slate-400 text-[11px] leading-relaxed">
+              05, Vikas Farm House, Ambedkar Colony, Kherda, Sawai Madhopur, RJ 322001
+            </p>
+          </div>
+        </div>
+
+        {/* Card 3: Make a Call */}
+        <div className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:border-yellow-500/30 hover:-translate-y-1">
+          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
+          <div className="flex items-center gap-3 mb-4 mt-2">
+            <div className="p-3 bg-amber-500/10 rounded-2xl text-amber-400 shrink-0">
               <PhoneCall className="h-5 w-5" />
             </div>
-            <h3 className="font-extrabold text-white text-base tracking-wide">Make a Call</h3>
+            <h3 className="font-extrabold text-white text-sm tracking-wide">Call Direct</h3>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-1">
             <h4 className="text-xs font-black text-yellow-500">
-              <a href="tel:+919509380380" className="hover:text-yellow-500 transition-colors">+91 95093 80380</a>
+              <a href="tel:+919509380380" className="hover:text-yellow-400 transition-colors">+91 95093 80380</a>
             </h4>
             <p className="text-slate-200 text-xs font-bold">Himanshu Tilkar</p>
             <p className="text-slate-400 text-[11px] leading-relaxed">
-              Mon - Sat: 09am - 08pm
+              Mon - Sat: 09:00 AM - 08:00 PM
             </p>
           </div>
         </div>
 
-        {/* Card 3: Send a Mail */}
+        {/* Card 4: Send a Mail */}
         <div className="bg-slate-900/20 backdrop-blur-md border border-slate-900 rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:border-yellow-500/30 hover:-translate-y-1">
-          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-          <div className="flex items-center gap-3.5 mb-4 mt-2">
-            <div className="p-3 bg-emerald-500/10 rounded-2xl text-emerald-400">
+          <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
+          <div className="flex items-center gap-3 mb-4 mt-2">
+            <div className="p-3 bg-emerald-500/10 rounded-2xl text-emerald-400 shrink-0">
               <Mail className="h-5 w-5" />
             </div>
-            <h3 className="font-extrabold text-white text-base tracking-wide">Send a Mail</h3>
+            <h3 className="font-extrabold text-white text-sm tracking-wide">Email Us</h3>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-1">
             <h4 className="text-xs font-black text-yellow-500">
-              <a href="mailto:himanshutilkar@gmail.com" className="hover:text-yellow-500 transition-colors">himanshutilkar@gmail.com</a>
+              <a href="mailto:himanshutilkar@gmail.com" className="hover:text-yellow-400 transition-colors break-all">himanshutilkar@gmail.com</a>
             </h4>
             <p className="text-slate-400 text-[11px] leading-relaxed">
-              himanshutilkar@gmail.com
+              Quick response within 2 hours
             </p>
           </div>
         </div>
@@ -991,16 +1019,49 @@ function RequestSurveyPage() {
       {/* Form Switcher */}
       <RequestSurveyForm />
 
-      {/* Map Section */}
+      {/* Interactive Map Section */}
       <div className="space-y-4">
-        <h3 className="text-sm font-bold text-white tracking-wide uppercase">Our Location Map</h3>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <h3 className="text-sm font-extrabold text-white tracking-wide uppercase flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-yellow-500" />
+            <span>Interactive Office Location Maps</span>
+          </h3>
+          <div className="flex items-center gap-2 bg-slate-950 p-1 rounded-xl border border-slate-900">
+            <button
+              onClick={() => setActiveMapTab('jaipur')}
+              className={`px-4 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                activeMapTab === 'jaipur'
+                  ? 'bg-yellow-500 text-slate-950 shadow-md'
+                  : 'text-slate-400 hover:text-white bg-transparent'
+              }`}
+            >
+              Corporate Office (Jaipur)
+            </button>
+            <button
+              onClick={() => setActiveMapTab('sawai')}
+              className={`px-4 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                activeMapTab === 'sawai'
+                  ? 'bg-yellow-500 text-slate-950 shadow-md'
+                  : 'text-slate-400 hover:text-white bg-transparent'
+              }`}
+            >
+              Head Office (Sawai Madhopur)
+            </button>
+          </div>
+        </div>
+
         <div className="w-full h-[400px] rounded-3xl overflow-hidden border border-slate-900 shadow-2xl relative">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.7347690623253!2d75.72798991502447!3d26.911833983126743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db406a4d7d13b%3A0xe54dcf9c4b7b2507!2sVaishali%20Nagar%2C%20Jaipur%2C%20Rajasthan%20302021!5e0!3m2!1sen!2sin!4v1689123456789!5m2!1sen!2sin"
-            className="w-full h-full border-0 filter invert-[0.9] hue-rotate-[180deg] opacity-80 hover:opacity-100 transition-opacity duration-300"
+            src={
+              activeMapTab === 'jaipur'
+                ? "https://maps.google.com/maps?q=Keshyawala,+Muhana+Mandi+Road,+Mansarovar,+Jaipur,+Rajasthan+302029&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                : "https://maps.google.com/maps?q=Kherda,+Sawai+Madhopur,+Rajasthan+322001&t=&z=14&ie=UTF8&iwloc=&output=embed"
+            }
+            className="w-full h-full border-0 filter invert-[0.9] hue-rotate-[180deg] opacity-85 hover:opacity-100 transition-opacity duration-300"
             allowFullScreen={true}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
+            title="TNS Solar Energy Office Map"
           ></iframe>
         </div>
       </div>
